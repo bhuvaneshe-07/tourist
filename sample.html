@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Tourist Management System</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background: #0b3d5c;
+            color: white;
+            padding: 15px 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #ffd166;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 15px;
+        }
+
+        nav a:hover {
+            color: #ffd166;
+        }
+
+        .login-btn {
+            background: #ffd166;
+            color: #222;
+            padding: 9px 16px;
+            border-radius: 5px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 500px;
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.45),
+                rgba(0, 0, 0, 0.45)),
+                url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e")
+                center/cover;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .search-box {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            gap: 10px;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .search-box input,
+        .search-box select {
+            flex: 1;
+            padding: 13px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .search-box button {
+            background: #ff7b00;
+            color: white;
+            border: none;
+            padding: 13px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* General Section */
+        section {
+            padding: 60px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            color: #0b3d5c;
+        }
+
+        .section-title p {
+            margin-top: 10px;
+            color: #666;
+        }
+
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px #ddd;
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .feature-card .icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            color: #0b3d5c;
+            margin-bottom: 10px;
+        }
+
+        /* Destinations */
+        .destinations {
+            background: #eef6f8;
+        }
+
+        .destination-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .destination-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px #ddd;
+        }
+
+        .destination-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .destination-info {
+            padding: 20px;
+        }
+
+        .destination-info h3 {
+            color: #0b3d5c;
+            margin-bottom: 8px;
+        }
+
+        .destination-info p {
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        .explore {
+            color: #ff7b00;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Packages */
+        .packages {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .package-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 12px #ddd;
+        }
+
+        .package-card img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+        }
+
+        .package-info {
+            padding: 22px;
+        }
+
+        .package-info h3 {
+            color: #0b3d5c;
+        }
+
+        .price {
+            color: #ff7b00;
+            font-size: 22px;
+            font-weight: bold;
+            margin: 12px 0;
+        }
+
+        .book-btn {
+            display: inline-block;
+            background: #0b3d5c;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        /* Statistics */
+        .stats {
+            background: #0b3d5c;
+            color: white;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            text-align: center;
+            padding: 45px 7%;
+        }
+
+        .stat h2 {
+            font-size: 35px;
+            color: #ffd166;
+        }
+
+        .stat p {
+            margin-top: 8px;
+        }
+
+        /* Services */
+        .services {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .service {
+            background: white;
+            padding: 25px;
+            border-left: 5px solid #ff7b00;
+            box-shadow: 0 3px 10px #ddd;
+        }
+
+        .service h3 {
+            color: #0b3d5c;
+            margin-bottom: 10px;
+        }
+
+        /* Reviews */
+        .reviews {
+            background: #eef6f8;
+        }
+
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .review {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px #ddd;
+        }
+
+        .stars {
+            color: #f5b400;
+            margin-bottom: 12px;
+        }
+
+        .review h4 {
+            margin-top: 15px;
+            color: #0b3d5c;
+        }
+
+        /* Call to Action */
+        .cta {
+            background: #ff7b00;
+            color: white;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 35px;
+            margin-bottom: 15px;
+        }
+
+        .cta a {
+            display: inline-block;
+            margin-top: 20px;
+            background: white;
+            color: #ff7b00;
+            padding: 13px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background: #082b40;
+            color: white;
+            padding: 45px 7% 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 30px;
+        }
+
+        footer h3 {
+            margin-bottom: 15px;
+            color: #ffd166;
+        }
+
+        footer p,
+        footer a {
+            color: #ddd;
+            text-decoration: none;
+            line-height: 2;
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid #345;
+            margin-top: 30px;
+            padding-top: 20px;
+            color: #bbb;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            nav {
+                display: none;
+            }
+
+            .features,
+            .destination-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .packages,
+            .services,
+            .review-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .features,
+            .destination-grid,
+            .stats,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .hero h1 {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Header -->
+<header>
+    <div class="logo">🌍 Travel<span>Mate</span></div>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#destinations">Destinations</a>
+        <a href="#packages">Packages</a>
+        <a href="#services">Services</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+        <a href="#" class="login-btn">Login</a>
+    </nav>
+</header>
+
+
+<!-- Hero -->
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>Explore The World</h1>
+
+        <p>
+            Discover beautiful destinations, exciting tours,
+            comfortable hotels and unforgettable experiences.
+        </p>
+
+        <div class="search-box">
+
+            <input type="text"
+                   placeholder="Search destination">
+
+            <select>
+                <option>Select Tour Type</option>
+                <option>Adventure</option>
+                <option>Family Tour</option>
+                <option>Beach Tour</option>
+                <option>Historical Tour</option>
+            </select>
+
+            <button>Search</button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Features -->
+<section>
+
+    <div class="section-title">
+        <h2>Our Features</h2>
+        <p>Everything you need to plan your perfect trip</p>
+    </div>
+
+    <div class="features">
+
+        <div class="feature-card">
+            <div class="icon">🗺️</div>
+            <h3>Destinations</h3>
+            <p>Explore popular tourist destinations.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">🎒</div>
+            <h3>Tour Packages</h3>
+            <p>Choose affordable travel packages.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">🏨</div>
+            <h3>Hotel Booking</h3>
+            <p>Find and book comfortable hotels.</p>
+        </div>
+
+        <div class="feature-card">
+            <div class="icon">🎫</div>
+            <h3>Easy Booking</h3>
+            <p>Book your tour quickly and easily.</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Destinations -->
+<section class="destinations" id="destinations">
+
+    <div class="section-title">
+        <h2>Popular Destinations</h2>
+        <p>Discover amazing places around the world</p>
+    </div>
+
+    <div class="destination-grid">
+
+        <div class="destination-card">
+            <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da"
+                 alt="India">
+            <div class="destination-info">
+                <h3>India</h3>
+                <p>Culture, history and beautiful landscapes.</p>
+                <a href="#" class="explore">Explore →</a>
+            </div>
+        </div>
+
+        <div class="destination-card">
+            <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4"
+                 alt="Bali">
+            <div class="destination-info">
+                <h3>Bali</h3>
+                <p>Beautiful beaches and peaceful nature.</p>
+                <a href="#" class="explore">Explore →</a>
+            </div>
+        </div>
+
+        <div class="destination-card">
+            <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7"
+                 alt="Paris">
+            <div class="destination-info">
+                <h3>Paris</h3>
+                <p>Experience art, culture and famous landmarks.</p>
+                <a href="#" class="explore">Explore →</a>
+            </div>
+        </div>
+
+        <div class="destination-card">
+            <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e"
+                 alt="Japan">
+            <div class="destination-info">
+                <h3>Japan</h3>
+                <p>Explore traditional culture and modern cities.</p>
+                <a href="#" class="explore">Explore →</a>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Packages -->
+<section id="packages">
+
+    <div class="section-title">
+        <h2>Featured Tour Packages</h2>
+        <p>Choose a package that matches your travel plan</p>
+    </div>
+
+    <div class="packages">
+
+        <div class="package-card">
+
+            <img src="https://images.unsplash.com/photo-1528181304800-259b08848526"
+                 alt="Kerala Tour">
+
+            <div class="package-info">
+                <h3>Kerala Nature Tour</h3>
+                <p>5 Days / 4 Nights</p>
+                <p class="price">₹15,999</p>
+                <a href="#" class="book-btn">Book Now</a>
+            </div>
+
+        </div>
+
+        <div class="package-card">
+
+            <img src="https://images.unsplash.com/photo-1512100356356-de1b84283e18"
+                 alt="Goa Tour">
+
+            <div class="package-info">
+                <h3>Goa Beach Tour</h3>
+                <p>4 Days / 3 Nights</p>
+                <p class="price">₹12,999</p>
+                <a href="#" class="book-btn">Book Now</a>
+            </div>
+
+        </div>
+
+        <div class="package-card">
+
+            <img src="https://images.unsplash.com/photo-1548013146-72479768bada"
+                 alt="Agra Tour">
+
+            <div class="package-info">
+                <h3>Agra Heritage Tour</h3>
+                <p>3 Days / 2 Nights</p>
+                <p class="price">₹8,999</p>
+                <a href="#" class="book-btn">Book Now</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Statistics -->
+<div class="stats">
+
+    <div class="stat">
+        <h2>500+</h2>
+        <p>Destinations</p>
+    </div>
+
+    <div class="stat">
+        <h2>1,500+</h2>
+        <p>Tour Packages</p>
+    </div>
+
+    <div class="stat">
+        <h2>10,000+</h2>
+        <p>Happy Tourists</p>
+    </div>
+
+    <div class="stat">
+        <h2>50+</h2>
+        <p>Tour Guides</p>
+    </div>
+
+</div>
+
+
+<!-- Services -->
+<section id="services">
+
+    <div class="section-title">
+        <h2>Our Services</h2>
+        <p>Complete travel management services</p>
+    </div>
+
+    <div class="services">
+
+        <div class="service">
+            <h3>✈️ Travel Booking</h3>
+            <p>Book flights, trains and other transportation.</p>
+        </div>
+
+        <div class="service">
+            <h3>🏨 Hotel Reservation</h3>
+            <p>Find hotels according to your budget.</p>
+        </div>
+
+        <div class="service">
+            <h3>🧑‍💼 Tour Guide</h3>
+            <p>Connect with experienced local tour guides.</p>
+        </div>
+
+        <div class="service">
+            <h3>🚕 Transportation</h3>
+            <p>Arrange local transportation for tourists.</p>
+        </div>
+
+        <div class="service">
+            <h3>💳 Online Payment</h3>
+            <p>Make secure payments for your bookings.</p>
+        </div>
+
+        <div class="service">
+            <h3>📞 24/7 Support</h3>
+            <p>Get help whenever you need it.</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Reviews -->
+<section class="reviews" id="reviews">
+
+    <div class="section-title">
+        <h2>Customer Reviews</h2>
+        <p>What our tourists say about us</p>
+    </div>
+
+    <div class="review-grid">
+
+        <div class="review">
+            <div class="stars">★★★★★</div>
+            <p>
+                "The booking process was very easy and
+                the tour was well organized."
+            </p>
+            <h4>— Arun Kumar</h4>
+        </div>
+
+        <div class="review">
+            <div class="stars">★★★★★</div>
+            <p>
+                "Great destinations and excellent
+                service. I really enjoyed my trip."
+            </p>
+            <h4>— Priya</h4>
+        </div>
+
+        <div class="review">
+            <div class="stars">★★★★☆</div>
+            <p>
+                "The hotel and transportation arrangements
+                were very convenient."
+            </p>
+            <h4>— Rahul</h4>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Call To Action -->
+<section class="cta">
+
+    <h2>Ready for Your Next Adventure?</h2>
+
+    <p>
+        Plan your trip today and discover amazing places.
+    </p>
+
+    <a href="#">Start Your Journey</a>
+
+</section>
+
+
+<!-- Footer -->
+<footer id="contact">
+
+    <div class="footer-grid">
+
+        <div>
+            <h3>TravelMate</h3>
+            <p>
+                A complete tourist management system
+                for planning and managing your travel.
+            </p>
+        </div>
+
+        <div>
+            <h3>Quick Links</h3>
+            <p><a href="#">Home</a></p>
+            <p><a href="#">Destinations</a></p>
+            <p><a href="#">Packages</a></p>
+            <p><a href="#">Bookings</a></p>
+        </div>
+
+        <div>
+            <h3>Services</h3>
+            <p><a href="#">Hotels</a></p>
+            <p><a href="#">Tour Guides</a></p>
+            <p><a href="#">Transportation</a></p>
+            <p><a href="#">Travel Booking</a></p>
+        </div>
+
+        <div>
+            <h3>Contact</h3>
+            <p>📧 travelmate@gmail.com</p>
+            <p>📞 +91 98765 43210</p>
+            <p>📍 Tamil Nadu, India</p>
+        </div>
+
+    </div>
+
+    <div class="copyright">
+        © 2026 TravelMate Tourist Management System. All Rights Reserved.
+    </div>
+
+</footer>
+
+</body>
+</html>

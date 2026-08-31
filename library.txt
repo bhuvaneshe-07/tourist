@@ -1,0 +1,33 @@
+Here are the main features for the simple library management system:
+
+1. **User Authentication:** Both User 1 and User 2 can securely log in to access their assigned features.
+2. **Book Catalog Search:** Both users can search for available books by title, author, or category.
+3. **Book Inventory Management:** User 1 can add, update, or remove book records from the system.
+4. **Borrowing and Returning:** User 1 can issue books to User 2 and record returned items.
+5. **Account Dashboard:** User 2 can view their currently borrowed books, due dates, and borrowing history.
+6. **Fine Tracking:** User 1 can calculate and collect fine payments for overdue books.
+
+
+CLAUDE
+
+1. **Book Search** – Users can search for books by title, author, or category.
+2. **Book Issue** – System allows issuing a book to a user and records the due date.
+3. **Book Return** – System updates records when a user returns a borrowed book.
+4. **User Registration/Login** – Both User 1 and User 2 can register and log in to access the system.
+5. **Book Availability Status** – System shows whether a book is available or already issued.
+6. **Fine Calculation** – System calculates and displays late return fines, if any.
+
+
+CHATGPT
+1. User 1 (Librarian): Add new books to the library system.
+
+2. User 1 (Librarian): Issue books to users and record the details.
+
+3. User 1 (Librarian): Receive returned books and update availability.
+
+4. User 2 (Student/User): Search for books by title or author.
+
+5. User 2 (Student/User): View available books and borrowed books.
+
+6. User 2 (Student/User): Check return dates and overdue fines.
+

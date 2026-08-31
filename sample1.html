@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wonder- Travel & Tourism Management</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: auto;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: #007bff;
+        }
+
+        .btn-login {
+            background: #007bff;
+            color: white !important;
+            padding: 0.5rem 1.2rem;
+            border-radius: 5px;
+        }
+
+        /* Hero */
+        .hero {
+            background:
+                linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                url("https://picsum.photos/1600/900") center/cover;
+            min-height: 80vh;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+        }
+
+        .search-box {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+            width: 90%;
+            max-width: 900px;
+        }
+
+        .search-box input,
+        .search-box select {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            min-width: 150px;
+        }
+
+        button {
+            border: none;
+            cursor: pointer;
+        }
+
+        .search-box button {
+            background: #28a745;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        /* General */
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2.5rem;
+            color: #222;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+
+        .card h3 {
+            margin-bottom: 0.7rem;
+            color: #007bff;
+        }
+
+        /* Packages */
+        .destination-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+
+        .destination-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .destination-info {
+            padding: 1.5rem;
+        }
+
+        .price {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #28a745;
+            margin-top: 0.5rem;
+        }
+
+        .package-btn {
+            background: #007bff;
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+        }
+
+        /* Forms */
+        .form-container {
+            max-width: 700px;
+            margin: auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .submit-btn {
+            background: #28a745;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        /* Dashboard */
+        .dashboard-card {
+            text-align: left;
+        }
+
+        .dashboard-card h3 {
+            color: #007bff;
+        }
+
+        .dashboard-btn {
+            background: #007bff;
+            color: white;
+            padding: 0.6rem 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+        }
+
+        /* Login */
+        .login-box {
+            max-width: 450px;
+            margin: auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        }
+
+        /* Footer */
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0.8rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <nav>
+            <div class="logo">Wonder Systems</div>
+
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#destinations">Destinations</a></li>
+                <li><a href="#packages">Tour Packages</a></li>
+                <li><a href="#booking">Bookings</a></li>
+                <li><a href="#itinerary">Itinerary</a></li>
+                <li><a href="#support">Support</a></li>
+                <li><a href="#login" class="btn-login">Portal Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <!-- Home -->
+    <section class="hero" id="home">
+
+        <h1>Explore the World with Ease</h1>
+
+        <p>
+            Complete management platform for tourists and agency bookings.
+        </p>
+
+        <form class="search-box" onsubmit="searchDestination(event)">
+
+            <input
+                type="text"
+                id="destination"
+                placeholder="Where do you want to go?"
+                required
+            >
+
+            <input type="date" required>
+
+            <select required>
+                <option value="">Guest Count</option>
+                <option value="1">1 Person</option>
+                <option value="2">2 People</option>
+                <option value="5">5 People</option>
+                <option value="10">10 People</option>
+            </select>
+
+            <button type="submit">
+                Search Availability
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <!-- Features -->
+    <section class="container" id="features">
+
+        <h2 class="section-title">System Features</h2>
+
+        <div class="grid">
+
+            <div class="card">
+                <h3>Real-Time Booking</h3>
+                <p>
+                    Check availability and book hotels, flights and tours easily.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Itinerary Planner</h3>
+                <p>
+                    Create and manage your daily travel schedules and activities.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Secure Payments</h3>
+                <p>
+                    Manage payments and receive booking confirmations.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>Tourist Dashboard</h3>
+                <p>
+                    View bookings, tickets and manage your travel profile.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Destinations -->
+    <section class="container" id="destinations">
+
+        <h2 class="section-title">Popular Destinations</h2>
+
+        <div class="grid">
+
+            <div class="destination-card">
+
+                <img
+                    src="https://picsum.photos/400/300?random=11"
+                    alt="Beach Destination"
+                >
+
+                <div class="destination-info">
+                    <h3>Goa</h3>
+                    <p>Beautiful beaches, resorts and exciting activities.</p>
+                    <div class="price">₹15,999</div>
+
+                    <button
+                        class="package-btn"
+                        onclick="selectPackage('Goa')">
+                        Book Now
+                    </button>
+                </div>
+
+            </div>
+
+
+            <div class="destination-card">
+
+                <img
+                    src="https://picsum.photos/400/300?random=12"
+                    alt="Mountain Destination"
+                >
+
+                <div class="destination-info">
+                    <h3>Ooty</h3>
+                    <p>Enjoy mountains, nature, lakes and beautiful weather.</p>
+                    <div class="price">₹9,999</div>
+
+                    <button
+                        class="package-btn"
+                        onclick="selectPackage('Ooty')">
+                        Book Now
+                    </button>
+                </div>
+
+            </div>
+
+
+            <div class="destination-card">
+
+                <img
+                    src="https://picsum.photos/400/300?random=13"
+                    alt="Historical Destination"
+                >
+
+                <div class="destination-info">
+                    <h3>Jaipur</h3>
+                    <p>Explore forts, palaces and India's rich culture.</p>
+                    <div class="price">₹12,999</div>
+
+                    <button
+                        class="package-btn"
+                        onclick="selectPackage('Jaipur')">
+                        Book Now
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Tour Packages -->
+    <section class="container" id="packages">
+
+        <h2 class="section-title">Tour Packages</h2>
+
+        <div class="grid">
+
+            <div class="card">
+
+                <h3>Beach Holiday</h3>
+
+                <p>
+                    5 Days / 4 Nights
+                </p>
+
+                <p>
+                    Hotel + Food + Sightseeing
+                </p>
+
+                <div class="price">₹15,999</div>
+
+                <button
+                    class="package-btn"
+                    onclick="selectPackage('Beach Holiday')">
+                    Choose Package
+                </button>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Mountain Adventure</h3>
+
+                <p>
+                    6 Days / 5 Nights
+                </p>
+
+                <p>
+                    Hotel + Adventure + Guide
+                </p>
+
+                <div class="price">₹18,999</div>
+
+                <button
+                    class="package-btn"
+                    onclick="selectPackage('Mountain Adventure')">
+                    Choose Package
+                </button>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Cultural Tour</h3>
+
+                <p>
+                    7 Days / 6 Nights
+                </p>
+
+                <p>
+                    Heritage + Museum + Transport
+                </p>
+
+                <div class="price">₹22,999</div>
+
+                <button
+                    class="package-btn"
+                    onclick="selectPackage('Cultural Tour')">
+                    Choose Package
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Booking -->
+    <section class="container" id="booking">
+
+        <h2 class="section-title">Make a Booking</h2>
+
+        <div class="form-container">
+
+            <form onsubmit="makeBooking(event)">
+
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter your name"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <input
+                        type="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>Destination</label>
+
+                    <select id="bookingDestination" required>
+
+                        <option value="">
+                            Select Destination
+                        </option>
+
+                        <option value="Goa">
+                            Goa
+                        </option>
+
+                        <option value="Ooty">
+                            Ooty
+                        </option>
+
+                        <option value="Jaipur">
+                            Jaipur
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+                    <label>Travel Date</label>
+                    <input type="date" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Number of Guests</label>
+                    <input
+                        type="number"
+                        min="1"
+                        max="20"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>Special Request</label>
+
+                    <textarea
+                        rows="4"
+                        placeholder="Enter your requirements">
+                    </textarea>
+
+                </div>
+
+                <button class="submit-btn" type="submit">
+                    Confirm Booking
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- Itinerary -->
+    <section class="container" id="itinerary">
+
+        <h2 class="section-title">Itinerary Planner</h2>
+
+        <div class="grid">
+
+            <div class="card">
+                <h3>Day 1</h3>
+                <p>Arrival and hotel check-in.</p>
+            </div>
+
+            <div class="card">
+                <h3>Day 2</h3>
+                <p>Local sightseeing and activities.</p>
+            </div>
+
+            <div class="card">
+                <h3>Day 3</h3>
+                <p>Adventure activities and shopping.</p>
+            </div>
+
+            <div class="card">
+                <h3>Day 4</h3>
+                <p>Explore popular tourist attractions.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Tourist Dashboard -->
+    <section class="container" id="dashboard">
+
+        <h2 class="section-title">Tourist Dashboard</h2>
+
+        <div class="grid">
+
+            <div class="card dashboard-card">
+
+                <h3>My Bookings</h3>
+
+                <p>
+                    View your current and previous travel bookings.
+                </p>
+
+                <button
+                    class="dashboard-btn"
+                    onclick="showMessage('No active bookings found.')">
+                    View Bookings
+                </button>
+
+            </div>
+
+
+            <div class="card dashboard-card">
+
+                <h3>My Tickets</h3>
+
+                <p>
+                    Access your travel tickets and booking details.
+                </p>
+
+                <button
+                    class="dashboard-btn"
+                    onclick="showMessage('Your tickets will appear here.')">
+                    View Tickets
+                </button>
+
+            </div>
+
+
+            <div class="card dashboard-card">
+
+                <h3>Profile</h3>
+
+                <p>
+                    Manage your personal account information.
+                </p>
+
+                <button
+                    class="dashboard-btn"
+                    onclick="showMessage('Profile management opened.')">
+                    Manage Profile
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Support -->
+    <section class="container" id="support">
+
+        <h2 class="section-title">24/7 Customer Support</h2>
+
+        <div class="grid">
+
+            <div class="card">
+
+                <h3>📞 Phone Support</h3>
+
+                <p>
+                    Contact our support team for booking assistance.
+                </p>
+
+                <p>
+                    +91 98765 43210
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>📧 Email Support</h3>
+
+                <p>
+                    Send your questions to our support team.
+                </p>
+
+                <p>
+                    support@wanderlust.com
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>💬 Live Chat</h3>
+
+                <p>
+                    Get quick assistance from our travel support team.
+                </p>
+
+                <button
+                    class="dashboard-btn"
+                    onclick="showMessage('Live chat is now available!')">
+                    Start Chat
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Login -->
+    <section class="container" id="login">
+
+        <h2 class="section-title">Portal Login</h2>
+
+        <div class="login-box">
+
+            <form onsubmit="loginUser(event)">
+
+                <div class="form-group">
+
+                    <label>Email</label>
+
+                    <input
+                        type="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>Password</label>
+
+                    <input
+                        type="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                </div>
+
+
+                <button class="submit-btn" type="submit">
+                    Login
+                </button>
+
+            </form>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            &copy; 2026 Wanderlust Tourist Management System.
+            All rights reserved.
+        </p>
+
+        <p>
+            Explore • Book • Travel • Enjoy
+        </p>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+    <script>
+
+        function searchDestination(event) {
+
+            event.preventDefault();
+
+            let destination =
+                document.getElementById("destination").value;
+
+            alert(
+                "Searching for available trips to " +
+                destination
+            );
+
+            document.getElementById("packages")
+                .scrollIntoView({
+                    behavior: "smooth"
+                });
+        }
+
+
+        function selectPackage(packageName) {
+
+            alert(
+                packageName +
+                " selected successfully!"
+            );
+
+            document.getElementById("booking")
+                .scrollIntoView({
+                    behavior: "smooth"
+                });
+        }
+
+
+        function makeBooking(event) {
+
+            event.preventDefault();
+
+            let name =
+                document.getElementById("name").value;
+
+            alert(
+                "Thank you, " +
+                name +
+                "! Your booking request has been submitted successfully."
+            );
+
+            event.target.reset();
+        }
+
+
+        function loginUser(event) {
+
+            event.preventDefault();
+
+            alert(
+                "Login successful! Welcome to Wanderlust."
+            );
+        }
+
+
+        function showMessage(message) {
+
+            alert(message);
+
+        }
+
+    </script>
+
+</body>
+</html>
