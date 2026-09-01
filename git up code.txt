@@ -1,0 +1,103 @@
+Active code page: 65001
+
+C:\Nonformal> git init
+Reinitialized existing Git repository in C:/Nonformal/.git/
+
+C:\Nonformal> git add .
+
+C:\Nonformal> git commit -m "Sample"
+On branch main
+nothing to commit, working tree clean
+
+C:\Nonformal> git branch -M main
+
+C:\Nonformal> git push -u origin main
+fatal: unable to access 'https://github.com/bhuvaneshe-07/tourist.git/': Could not resolve host: github.com
+
+C:\Nonformal> git remote add origin https://github.com/bhuvaneshe-07/project_1_pbsd.git
+error: remote origin already exists.
+
+C:\Nonformal> git branch -M main
+
+C:\Nonformal> git push -u origin main
+info: please complete authentication in your browser...
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (5/5), 8.66 KiB | 1.44 MiB/s, done.
+Total 5 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To https://github.com/bhuvaneshe-07/tourist.git
+ * [new branch]      main -> main
+branch 'main' set up to track 'origin/main'.
+
+C:\Nonformal> git branch -M main     
+
+C:\Nonformal> git push -u origin main
+branch 'main' set up to track 'origin/main'.
+Everything up-to-date
+
+C:\Nonformal>
+
+
+
+
+
+
+Active code page: 65001
+
+C:\Nonformal> git init
+Reinitialized existing Git repository in C:/Nonformal/.git/
+
+C:\Nonformal> git config user.name "bhuvaneshe-07" 
+
+C:\Nonformal> git config user.email "bhuvaneshe.25bcr@kongu.edu"
+
+C:\Nonformal> Add-Content .gitignore ".env"
+'Add-Content' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Nonformal> git add .
+
+C:\Nonformal> git status
+On branch main
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   library.txt
+        new file:   sample.html
+        new file:   sample1.html
+
+
+C:\Nonformal> git commit -m "Initial commit"
+[main (root-commit) 032eec1] Initial commit
+ 3 files changed, 1761 insertions(+)
+ create mode 100644 library.txt
+ create mode 100644 sample.html
+ create mode 100644 sample1.html
+
+C:\Nonformal> git branch -M main
+
+C:\Nonformal> git remote -v
+origin  https://github.com/bhuvaneshe-07/tourist.git (fetch)
+origin  https://github.com/bhuvaneshe-07/tourist.git (push)
+
+C:\Nonformal> git pull origin main --allow-unrelated-histories
+fatal: unable to access 'https://github.com/bhuvaneshe-07/tourist.git/': Could not resolve host: github.com
+
+C:\Nonformal> git add .
+
+C:\Nonformal> git commit -m "Merge remote repository"
+On branch main
+nothing to commit, working tree clean
+
+C:\Nonformal> git push -u origin main
+fatal: unable to access 'https://github.com/bhuvaneshe-07/tourist.git/': Could not resolve host: github.com
+
+C:\Nonformal>  
+
+
+
+
