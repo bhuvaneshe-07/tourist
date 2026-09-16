@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tourist Management System</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo">TourManager</div>
+        <nav>
+            <ul id="nav-links">
+                <li><a href="#" data-view="home-view">Home</a></li>
+                <li id="nav-tourist" class="hidden"><a href="#" data-view="tourist-dashboard-view">My Dashboard</a></li>
+                <li id="nav-admin" class="hidden"><a href="#" data-view="admin-dashboard-view">Admin Dashboard</a></li>
+                <li id="nav-login"><a href="#" data-view="login-view">Login</a></li>
+                <li id="nav-register"><a href="#" data-view="register-view">Register</a></li>
+                <li id="nav-logout" class="hidden"><a href="#" id="logout-btn">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div id="alert-container"></div>
+
+        <!-- Home / Search View -->
+        <section id="home-view" class="view active">
+            <h2>Find Your Next Adventure</h2>
+            <form id="search-form" class="card">
+                <div class="form-group row-form">
+                    <input type="text" id="search-dest" placeholder="Destination (e.g. Paris)" class="form-control" style="flex:1;">
+                    <input type="date" id="search-date" class="form-control" style="width:auto;">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </div>
+            </form>
+            <div id="packages-list" class="grid-container"></div>
+        </section>
+
+        <!-- Login View -->
+        <section id="login-view" class="view hidden">
+            <div class="card auth-card">
+                <h2>Login</h2>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="login-email" required class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="login-password" required class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Login</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Register View -->
+        <section id="register-view" class="view hidden">
+            <div class="card auth-card">
+                <h2>Register</h2>
+                <form id="register-form">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="register-name" required class="form-control" minlength="2">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="register-email" required class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="register-password" required class="form-control" minlength="6">
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Register</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Tourist Dashboard -->
+        <section id="tourist-dashboard-view" class="view hidden">
+            <h2>My Dashboard</h2>
+            <div class="dashboard-grid">
+                <div class="card">
+                    <h3>My Bookings</h3>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead><tr><th>ID</th><th>Package</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead>
+                            <tbody id="my-bookings-list"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card">
+                    <h3>Notifications</h3>
+                    <div id="notifications-list" class="notification-list"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Dashboard -->
+        <section id="admin-dashboard-view" class="view hidden">
+            <h2>Admin Dashboard</h2>
+            <div id="admin-stats" class="stats-grid"></div>
+            
+            <div class="admin-tabs">
+                <button class="tab-btn active" data-tab="admin-hotels">Hotels</button>
+                <button class="tab-btn" data-tab="admin-packages">Packages</button>
+                <button class="tab-btn" data-tab="admin-bookings">Bookings</button>
+                <button class="tab-btn" data-tab="admin-tourists">Tourists</button>
+                <button class="tab-btn" data-tab="admin-payments">Payments</button>
+            </div>
+
+            <div class="tab-content active" id="admin-hotels">
+                <div class="card">
+                    <h3>Manage Hotels</h3>
+                    <form id="hotel-form" class="row-form">
+                        <input type="hidden" id="hotel-id">
+                        <input type="text" id="hotel-name" placeholder="Name" required class="form-control">
+                        <input type="text" id="hotel-location" placeholder="Location" required class="form-control">
+                        <input type="text" id="hotel-desc" placeholder="Description" class="form-control">
+                        <button type="submit" class="btn btn-success" id="hotel-submit-btn">Save</button>
+                    </form>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead><tr><th>ID</th><th>Name</th><th>Location</th><th>Actions</th></tr></thead>
+                            <tbody id="hotels-list"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content hidden" id="admin-packages">
+                <div class="card">
+                    <h3>Manage Packages</h3>
+                    <form id="package-form" class="grid-form">
+                        <input type="hidden" id="package-id">
+                        <input type="text" id="package-name" placeholder="Package Name" required class="form-control">
+                        <input type="text" id="package-dest" placeholder="Destination" required class="form-control">
+                        <select id="package-hotel" required class="form-control"><option value="">Select Hotel</option></select>
+                        <input type="number" id="package-price" placeholder="Price ($)" step="0.01" required class="form-control">
+                        <input type="date" id="package-date" required class="form-control">
+                        <input type="url" id="package-img" placeholder="Image URL (optional)" class="form-control">
+                        <textarea id="package-desc" placeholder="Description" class="form-control full-width"></textarea>
+                        <div class="full-width">
+                            <button type="submit" class="btn btn-success" id="package-submit-btn">Save</button>
+                        </div>
+                    </form>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead><tr><th>ID</th><th>Name</th><th>Destination</th><th>Price</th><th>Date</th><th>Actions</th></tr></thead>
+                            <tbody id="admin-packages-list"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content hidden" id="admin-bookings">
+                <div class="card">
+                    <h3>All Bookings</h3>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead><tr><th>ID</th><th>Tourist Email</th><th>Package</th><th>Status</th><th>Payment Ref</th></tr></thead>
+                            <tbody id="all-bookings-list"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content hidden" id="admin-tourists">
+                <div class="card">
+                    <h3>Registered Tourists</h3>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Registered At</th></tr></thead>
+                            <tbody id="tourists-list"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content hidden" id="admin-payments">
+                <div class="card">
+                    <h3>All Payments</h3>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead><tr><th>Ref</th><th>Booking</th><th>Amount</th><th>Method</th><th>Status</th><th>Date</th></tr></thead>
+                            <tbody id="payments-list"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="modal">
+        <div class="modal-content card">
+            <span class="close-btn">&times;</span>
+            <h2>Book Package</h2>
+            <p id="booking-pkg-name" style="font-weight:bold;"></p>
+            <p><strong>Total Amount: </strong> $<span id="booking-pkg-price"></span></p>
+            <form id="booking-form">
+                <input type="hidden" id="booking-pkg-id">
+                <div class="form-group">
+                    <label>Payment Method</label>
+                    <select id="booking-method" required class="form-control">
+                        <option value="card">Credit/Debit Card</option>
+                        <option value="netbanking">Netbanking</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Account / Card Number</label>
+                    <input type="text" id="booking-account" required minlength="12" class="form-control" placeholder="Min 12 digits">
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Pay & Book</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

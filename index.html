@@ -3,27 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TourManager - Tourist Management System</title>
-    <!-- FontAwesome for modern visual icons -->
+    <title>TourManager Pro | Next-Gen Travel Platform</title>
+    <!-- FontAwesome & Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="background-overlay" style="background-image: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.85)), url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center; background-attachment: fixed; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1;"></div>
+    <div class="background-overlay"></div>
 
     <div class="app-container">
-        <!-- Modern Glassmorphism Sidebar Navigation -->
+        <!-- Glassmorphism Sidebar -->
         <aside class="sidebar" id="sidebar">
             <div class="brand">
-                <i class="fa-solid fa-compass brand-icon"></i>
+                <div class="brand-logo">
+                    <i class="fa-solid fa-compass brand-icon"></i>
+                </div>
                 <h2>TourManager</h2>
             </div>
+
             <nav class="nav-menu">
                 <a href="#" class="nav-item active" data-target="dashboard-section">
                     <i class="fa-solid fa-chart-pie"></i><span>Dashboard</span>
                 </a>
                 <a href="#" class="nav-item" data-target="search-section">
-                    <i class="fa-solid fa-magnifying-glass-location"></i><span>Search Packages</span>
+                    <i class="fa-solid fa-magnifying-glass-location"></i><span>Explore Packages</span>
                 </a>
                 <a href="#" class="nav-item tourist-only" data-target="my-bookings-section">
                     <i class="fa-solid fa-suitcase-rolling"></i><span>My Bookings</span>
@@ -36,11 +41,12 @@
                 </a>
                 <a href="#" class="nav-item" data-target="notifications-section">
                     <i class="fa-solid fa-bell"></i><span>Notifications</span>
-                    <span class="badge" id="notif-badge">2</span>
+                    <span class="badge" id="notif-badge">0</span>
                 </a>
             </nav>
+
             <div class="user-role-toggle">
-                <label for="role-select"><i class="fa-solid fa-sliders"></i> Current View Role:</label>
+                <label for="role-select"><i class="fa-solid fa-sliders"></i> Active View Role:</label>
                 <select id="role-select" onchange="switchRole(this.value)">
                     <option value="tourist">Tourist View</option>
                     <option value="admin">Admin View</option>
@@ -53,16 +59,19 @@
             <!-- Glassmorphism Top Header -->
             <header class="top-header">
                 <div class="header-left">
-                    <button class="menu-toggle" id="menu-toggle"><i class="fa-solid fa-bars"></i></button>
+                    <button class="menu-toggle" id="menu-toggle" onclick="toggleMobileSidebar()"><i class="fa-solid fa-bars"></i></button>
                     <h1 id="page-title">Dashboard Overview</h1>
                 </div>
                 <div class="user-profile">
                     <div class="user-badge" id="user-display">
                         <i class="fa-solid fa-circle-user"></i>
-                        <span>Logged in as: <strong id="role-label-text">Tourist</strong></span>
+                        <span>Role: <strong id="role-label-text">Tourist</strong></span>
                     </div>
-                    <button class="btn btn-secondary btn-glow" id="auth-btn" onclick="toggleAuth()">
-                        <i class="fa-solid fa-right-to-bracket"></i> <span id="auth-btn-text">Login / Register</span>
+                    <button class="btn btn-secondary btn-glow" onclick="openAuthModal('tourist')">
+                        <i class="fa-solid fa-user-check"></i> <span>Tourist Portal</span>
+                    </button>
+                    <button class="btn btn-primary btn-glow" onclick="openAuthModal('admin')">
+                        <i class="fa-solid fa-lock"></i> <span>Admin Portal</span>
                     </button>
                 </div>
             </header>
@@ -70,73 +79,92 @@
             <div class="content-body">
                 <!-- Dashboard Overview Section -->
                 <section id="dashboard-section" class="app-section active-section">
-                    <div class="hero-banner" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80'); background-size: cover; background-position: center; padding: 60px 40px; border-radius: 16px; color: #fff;">
+                    <div class="hero-banner">
                         <div class="hero-content">
-                            <h2 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 12px;">Discover Extraordinary Destinations</h2>
-                            <p style="font-size: 1.1rem; max-width: 650px; margin-bottom: 24px;">Handpicked luxury packages, curated travel itineraries, and seamless bookings at your fingertips.</p>
-                            <button class="btn btn-primary btn-sparkle" onclick="document.querySelector('[data-target=\'search-section\']').click()">
+                            <span class="hero-tag"><i class="fa-solid fa-sparkles"></i> Unforgettable Expeditions</span>
+                            <h2>Discover Extraordinary Destinations</h2>
+                            <p>Handpicked luxury packages, curated itineraries, and flexible payment plans designed for seamless wanderlust.</p>
+                            <button class="btn btn-primary btn-sparkle" onclick="switchSection('search-section')">
                                 Explore Packages <i class="fa-solid fa-arrow-right"></i>
                             </button>
                         </div>
                     </div>
 
-                    <!-- Enhanced Metric Cards -->
+                    <!-- Metrics Grid -->
                     <div class="summary-cards">
                         <div class="card">
-                            <div class="card-icon bg-blue"><i class="fa-solid fa-box"></i></div>
+                            <div class="card-icon bg-blue"><i class="fa-solid fa-globe"></i></div>
                             <div class="card-info">
                                 <h3>Available Packages</h3>
-                                <p class="card-value" id="card-packages-count">3</p>
+                                <p class="card-value" id="card-packages-count">0</p>
                             </div>
                         </div>
                         <div class="card tourist-only">
                             <div class="card-icon bg-green"><i class="fa-solid fa-ticket"></i></div>
                             <div class="card-info">
                                 <h3>Active Bookings</h3>
-                                <p class="card-value" id="card-bookings-count">1</p>
+                                <p class="card-value" id="card-bookings-count">0</p>
                             </div>
                         </div>
                         <div class="card admin-only">
                             <div class="card-icon bg-purple"><i class="fa-solid fa-wallet"></i></div>
                             <div class="card-info">
-                                <h3>Total Payments Received</h3>
-                                <p class="card-value" id="card-payments-total">$1,200</p>
+                                <h3>Total Revenue</h3>
+                                <p class="card-value" id="card-payments-total">$0</p>
                             </div>
                         </div>
                         <div class="card admin-only">
                             <div class="card-icon bg-orange"><i class="fa-solid fa-users"></i></div>
                             <div class="card-info">
-                                <h3>Registered Tourists</h3>
-                                <p class="card-value" id="card-tourists-count">1</p>
+                                <h3>Total Tourists</h3>
+                                <p class="card-value" id="card-tourists-count">0</p>
                             </div>
                         </div>
                     </div>
 
-                    <div class="panel">
-                        <h2><i class="fa-solid fa-magnifying-glass"></i> Quick Package Search</h2>
-                        <div class="search-filter-bar inline-search">
-                            <div class="input-with-icon">
-                                <i class="fa-solid fa-location-dot"></i>
-                                <input type="text" id="quick-dest-input" placeholder="Destination (e.g., Switzerland, Maldives)">
+                    <!-- Analytics Section -->
+                    <div class="dashboard-grid">
+                        <div class="panel">
+                            <h2><i class="fa-solid fa-bolt"></i> Quick Destination Lookup</h2>
+                            <div class="search-filter-bar inline-search">
+                                <div class="input-with-icon">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    <input type="text" id="quick-dest-input" placeholder="Where do you want to go?">
+                                </div>
+                                <div class="input-with-icon">
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                    <input type="date" id="quick-date-input">
+                                </div>
+                                <button class="btn btn-primary" onclick="quickSearch()">
+                                    <i class="fa-solid fa-magnifying-glass"></i> Search
+                                </button>
                             </div>
-                            <div class="input-with-icon">
-                                <i class="fa-solid fa-calendar-days"></i>
-                                <input type="date" id="quick-date-input">
+                        </div>
+
+                        <div class="panel admin-only">
+                            <h2><i class="fa-solid fa-chart-line"></i> Revenue Trends</h2>
+                            <div class="chart-container">
+                                <canvas id="revenueChart"></canvas>
                             </div>
-                            <button class="btn btn-primary" onclick="quickSearch()">
-                                <i class="fa-solid fa-magnifying-glass"></i> Search Now
-                            </button>
                         </div>
                     </div>
 
-                    <!-- Extended Popular Spots Preview -->
+                    <!-- Featured Highlights -->
                     <div class="panel featured-destinations-panel">
-                        <h2><i class="fa-solid fa-fire"></i> Featured Destination Highlights</h2>
+                        <h2><i class="fa-solid fa-fire"></i> Hot Trending Destinations</h2>
                         <div class="hotspot-grid">
-                            <div class="hotspot-chip" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=400&q=80')">Paris, France</div>
-                            <div class="hotspot-chip" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=400&q=80')">Tokyo, Japan</div>
-                            <div class="hotspot-chip" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=400&q=80')">Dubai, UAE</div>
-                            <div class="hotspot-chip" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=400&q=80')">Amalfi, Italy</div>
+                            <div class="hotspot-chip" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=400&q=80')" onclick="filterByDestination('Paris')">
+                                <span>Paris, France</span>
+                            </div>
+                            <div class="hotspot-chip" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=400&q=80')" onclick="filterByDestination('Tokyo')">
+                                <span>Tokyo, Japan</span>
+                            </div>
+                            <div class="hotspot-chip" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=400&q=80')" onclick="filterByDestination('Dubai')">
+                                <span>Dubai, UAE</span>
+                            </div>
+                            <div class="hotspot-chip" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=400&q=80')" onclick="filterByDestination('Amalfi')">
+                                <span>Amalfi, Italy</span>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -144,7 +172,7 @@
                 <!-- Search & Book Packages -->
                 <section id="search-section" class="app-section">
                     <div class="section-header">
-                        <h2>Search Tour Packages</h2>
+                        <h2>Explore Tour Packages</h2>
                     </div>
                     <div class="search-filter-bar">
                         <div class="input-with-icon">
@@ -187,7 +215,7 @@
                 <!-- Admin Inventory Management -->
                 <section id="inventory-section" class="app-section admin-only">
                     <div class="section-header">
-                        <h2>Manage Inventory (Packages, Hotels, Prices)</h2>
+                        <h2>Manage Tour Packages</h2>
                         <button class="btn btn-primary btn-glow" onclick="openInventoryModal()"><i class="fa-solid fa-plus"></i> Add New Package</button>
                     </div>
                     <div class="table-container">
@@ -228,28 +256,56 @@
                 <!-- Notifications -->
                 <section id="notifications-section" class="app-section">
                     <h2>Automated System Notifications</h2>
-                    <p class="section-desc">Log of automated booking confirmations, payment receipts, and trip reminders sent to tourists.</p>
+                    <p class="section-desc">Log of automated booking confirmations, payment receipts, and system alerts.</p>
                     <ul class="notification-list" id="notification-log-list"></ul>
                 </section>
             </div>
         </main>
     </div>
 
-    <!-- Auth Modal -->
-    <div class="modal" id="auth-modal">
-        <div class="modal-content glass-modal">
-            <span class="close-btn" onclick="closeModal('auth-modal')">&times;</span>
-            <h3 id="auth-modal-title">Authentication</h3>
-            <form id="auth-form" onsubmit="handleAuth(event)">
+    <!-- Modals -->
+    <!-- Distinct Tourist Login / Register Modal -->
+    <div class="modal" id="tourist-auth-modal">
+        <div class="modal-content glass-modal portal-modal">
+            <span class="close-btn" onclick="closeModal('tourist-auth-modal')">&times;</span>
+            <div class="modal-banner tourist-banner">
+                <i class="fa-solid fa-plane-departure"></i>
+                <h3>Tourist Portal</h3>
+                <p>Sign in to unlock customized trips and instant booking tracking.</p>
+            </div>
+            <form id="tourist-auth-form" onsubmit="handleAuth(event, 'tourist')">
                 <div class="form-group">
-                    <label>Email Address</label>
-                    <input type="email" id="auth-email" required placeholder="user@example.com">
+                    <label>Tourist Email Address</label>
+                    <input type="email" id="tourist-email" required placeholder="tourist@example.com">
                 </div>
                 <div class="form-group">
-                    <label>Password (Min. 6 characters)</label>
-                    <input type="password" id="auth-password" minlength="6" required placeholder="••••••••">
+                    <label>Password</label>
+                    <input type="password" id="tourist-password" minlength="6" required placeholder="••••••••">
                 </div>
-                <button type="submit" class="btn btn-primary full-width">Login / Register</button>
+                <button type="submit" class="btn btn-primary full-width btn-sparkle">Login / Register as Tourist</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Distinct Admin Login Modal -->
+    <div class="modal" id="admin-auth-modal">
+        <div class="modal-content glass-modal portal-modal">
+            <span class="close-btn" onclick="closeModal('admin-auth-modal')">&times;</span>
+            <div class="modal-banner admin-banner">
+                <i class="fa-solid fa-user-gear"></i>
+                <h3>Administration Portal</h3>
+                <p>Restricted access for platform management and operational controls.</p>
+            </div>
+            <form id="admin-auth-form" onsubmit="handleAuth(event, 'admin')">
+                <div class="form-group">
+                    <label>Admin Username / Email</label>
+                    <input type="email" id="admin-email" required placeholder="admin@tourmanager.com">
+                </div>
+                <div class="form-group">
+                    <label>Security Password</label>
+                    <input type="password" id="admin-password" minlength="6" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn btn-primary full-width admin-btn">Authenticate Admin Session</button>
             </form>
         </div>
     </div>
@@ -275,18 +331,19 @@
                 <div class="form-group">
                     <label>Amount to Pay ($)</label>
                     <input type="number" id="pay-amount-input" step="0.01" required>
-                    <small id="pay-amount-hint" style="color: var(--text-light); font-size: 0.8rem;"></small>
+                    <small id="pay-amount-hint"></small>
                 </div>
                 <div class="form-group">
                     <label>Payment Method</label>
                     <select required>
                         <option value="card">Credit / Debit Card</option>
                         <option value="netbanking">Net Banking</option>
+                        <option value="upi">UPI / Instant Pay</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label>Card / Account Number (16 Digits)</label>
-                    <input type="text" id="pay-card-num" pattern="\d{16}" title="Must be a valid 16-digit card number" required placeholder="4000123456789010">
+                    <input type="text" id="pay-card-num" pattern="\d{16}" title="Must be a valid 16-digit number" required placeholder="4000123456789010">
                 </div>
                 <button type="submit" class="btn btn-primary full-width btn-sparkle">Pay & Confirm Booking</button>
             </form>
@@ -309,8 +366,8 @@
                     <input type="text" id="inv-destination" required placeholder="Hawaii">
                 </div>
                 <div class="form-group">
-                    <label>Destination Description / Highlights</label>
-                    <textarea id="inv-description" rows="3" required placeholder="Describe highlights, climate, landmark info..." style="width:100%; border-radius:10px; padding:10px; border:1px solid var(--border-color);"></textarea>
+                    <label>Highlights / Description</label>
+                    <textarea id="inv-description" rows="3" required placeholder="Highlights, climate, landmark info..."></textarea>
                 </div>
                 <div class="form-group">
                     <label>Associated Hotel</label>
