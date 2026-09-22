@@ -1,0 +1,8 @@
+{
+  "name": "Tourist Management System",
+  "description": "Next-generation travel platform featuring curated global destinations, tour booking, simulated payments, and an intelligent AI Travel Assistant.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
