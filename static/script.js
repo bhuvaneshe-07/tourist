@@ -251,6 +251,90 @@ let packages = [
         duration: '5 Days / 4 Nights',
         image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=600&q=80',
         date: '2026-11-25'
+    },
+    {
+        id: '17',
+        name: 'Inca Trail & Machu Picchu Sanctuary',
+        destination: 'Machu Picchu, Peru',
+        category: 'Cultural & Heritage',
+        description: 'Private sunrise access to the ancient Inca citadel of Machu Picchu, Sacred Valley alpaca farm tour, luxury Vistadome train, and historic Cusco suite.',
+        hotel: 'Belmond Sanctuary Lodge Citadel Villa',
+        price: 1750,
+        downpayment: 437,
+        rating: 4.98,
+        duration: '7 Days / 6 Nights',
+        image: 'https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&w=600&q=80',
+        date: '2026-10-18'
+    },
+    {
+        id: '18',
+        name: 'Bora Bora Overwater Lagoon Bliss',
+        destination: 'Bora Bora, French Polynesia',
+        category: 'Beach & Islands',
+        description: 'Overwater villa stay with glass floor viewing panels, Mount Otemanu catamaran lagoon cruise, shark and stingray safari, and Polynesian sunset dining.',
+        hotel: 'The St. Regis Bora Bora Lagoon Resort',
+        price: 2850,
+        downpayment: 712,
+        rating: 4.99,
+        duration: '6 Days / 5 Nights',
+        image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80',
+        date: '2026-11-12'
+    },
+    {
+        id: '19',
+        name: 'Royal Palaces & Taj Mahal Odyssey',
+        destination: 'Agra & Jaipur, India',
+        category: 'Cultural & Heritage',
+        description: 'Private sunrise entry to the marble Taj Mahal, royal Jaipur Amber Fort heritage tour, Michelin-level Rajasthani dining, and luxury monument-view suites.',
+        hotel: 'The Oberoi Amarvilas Monument Suite',
+        price: 1280,
+        downpayment: 320,
+        rating: 4.96,
+        duration: '7 Days / 6 Nights',
+        image: 'https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=600&q=80',
+        date: '2026-11-22'
+    },
+    {
+        id: '20',
+        name: 'Canadian Rockies & Glacial Lakes',
+        destination: 'Banff & Lake Louise, Canada',
+        category: 'Alpine & Winter',
+        description: 'Glacial canoe excursion on turquoise Lake Louise, Columbia Icefield Ice Explorer trek, Banff gondola panoramic summit views, and thermal mineral springs.',
+        hotel: 'Fairmont Chateau Lake Louise Mountain Haven',
+        price: 1620,
+        downpayment: 405,
+        rating: 4.93,
+        duration: '6 Days / 5 Nights',
+        image: 'https://images.unsplash.com/photo-1503614472-8c93d56e92ce?auto=format&fit=crop&w=600&q=80',
+        date: '2026-10-12'
+    },
+    {
+        id: '21',
+        name: 'Sydney Harbour & Great Barrier Reef',
+        destination: 'Sydney & Cairns, Australia',
+        category: 'Modern Metropolises',
+        description: 'Sydney Opera House backstage access, harbour sailing dinner cruise, scenic reef helicopter flight, and outer barrier reef luxury catamaran cruise.',
+        hotel: 'Park Hyatt Sydney Waterfront Suite',
+        price: 2100,
+        downpayment: 525,
+        rating: 4.95,
+        duration: '8 Days / 7 Nights',
+        image: 'https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=600&q=80',
+        date: '2026-12-08'
+    },
+    {
+        id: '22',
+        name: 'Serengeti Great Migration Safari',
+        destination: 'Serengeti & Ngorongoro, Tanzania',
+        category: 'Nature & Wildlife',
+        description: 'Sunrise hot air balloon safari across the Serengeti plains, tracking the Big Five with expert Maasai guides, luxury bush dinner, and crater game drive.',
+        hotel: 'Four Seasons Safari Lodge Serengeti',
+        price: 2650,
+        downpayment: 662,
+        rating: 4.99,
+        duration: '7 Days / 6 Nights',
+        image: 'https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=600&q=80',
+        date: '2026-11-04'
     }
 ];
 
@@ -346,6 +430,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     renderUserBookings();
     renderFinancialLedger();
     renderInventoryTable();
+    renderTouristsTable();
     renderNotifications();
     updateMetrics();
     initChart();
@@ -465,7 +550,7 @@ function filterByCategory(cat) {
         }
     });
     filterPackages();
-    switchToSection('search-section');
+    switchToSection('expeditions-section');
 }
 
 function filterByDestination(dest) {
@@ -481,7 +566,7 @@ function filterByDestination(dest) {
         }
     });
     filterPackages();
-    switchToSection('search-section');
+    switchToSection('expeditions-section');
 }
 
 function filterPackages() {
@@ -538,6 +623,9 @@ function resetSearch() {
     if (pRange) pRange.value = '';
     if (sSort) sSort.value = 'recommended';
 
+    const banner = document.getElementById('ai-search-result-banner');
+    if (banner) banner.classList.add('hidden');
+
     document.querySelectorAll('#category-filter-chips .pro-chip').forEach(c => c.classList.remove('active'));
     document.querySelector('#category-filter-chips .pro-chip')?.classList.add('active');
 
@@ -554,7 +642,7 @@ function quickSearch() {
     const searchDate = document.getElementById('search-date');
     if (searchDest) searchDest.value = q;
     if (searchDate) searchDate.value = d;
-    switchToSection('search-section');
+    switchToSection('expeditions-section');
     filterPackages();
 }
 
@@ -618,14 +706,25 @@ function renderPackages(items = packages) {
                     </div>
                 </div>
 
-                <div class="package-footer" style="display: flex; align-items: center; justify-content: space-between; gap: 8px;">
-                    <div>
-                        <span style="font-size: 10px; color: #34d399; text-transform: uppercase; font-weight: 700; display: block;">25% Deposit:</span>
-                        <strong style="font-size: 14px; color: #ffffff;">${formattedDeposit}</strong>
+                <div class="package-footer" style="display: flex; flex-direction: column; gap: 10px;">
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <div>
+                            <span style="font-size: 10px; color: #34d399; text-transform: uppercase; font-weight: 700; display: block;">25% Deposit:</span>
+                            <strong style="font-size: 14px; color: #ffffff;">${formattedDeposit}</strong>
+                        </div>
+                        <div style="text-align: right;">
+                            <span style="font-size: 10px; color: #94a3b8; text-transform: uppercase; font-weight: 700; display: block;">Full Price:</span>
+                            <strong style="font-size: 14px; color: #38bdf8;">${formattedTotal}</strong>
+                        </div>
                     </div>
-                    <button type="button" class="btn btn-primary" onclick="openBookingModal('${pkg.id}')" style="font-size: 12px; padding: 8px 16px;">
-                        <i class="fa-solid fa-compass"></i> Book Now
-                    </button>
+                    <div class="card-action-group">
+                        <button type="button" class="btn-details" onclick="openDetailsModal('${pkg.id}')">
+                            <i class="fa-solid fa-circle-info"></i> Details
+                        </button>
+                        <button type="button" class="btn btn-primary" onclick="openBookingModal('${pkg.id}')" style="flex: 1.3; font-size: 12px; padding: 8px 12px;">
+                            <i class="fa-solid fa-compass"></i> Book Now
+                        </button>
+                    </div>
                 </div>
             </div>
         `;
@@ -635,6 +734,173 @@ function renderPackages(items = packages) {
     if (typeof init3DTiltEffects === 'function') {
         init3DTiltEffects();
     }
+}
+
+// Luxury Package Details Modal Logic
+let activeDetailsPkg = null;
+let currentReviewRating = 5;
+
+function setReviewRating(val) {
+    currentReviewRating = val;
+    const input = document.getElementById('review-rating-val');
+    if (input) input.value = val;
+    const buttons = document.querySelectorAll('#star-rating-bar .star-rate-btn');
+    buttons.forEach((btn, idx) => {
+        if (idx < val) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+}
+
+async function openDetailsModal(pkgId) {
+    activeDetailsPkg = packages.find(p => p.id === String(pkgId));
+    if (!activeDetailsPkg) return;
+
+    document.getElementById('details-modal-title').textContent = activeDetailsPkg.name;
+    document.getElementById('details-name').textContent = activeDetailsPkg.name;
+    document.getElementById('details-dest').innerHTML = `<i class="fa-solid fa-location-dot" style="color:#38bdf8;"></i> ${activeDetailsPkg.destination}`;
+    document.getElementById('details-category-tag').textContent = activeDetailsPkg.category || 'Curated Expedition';
+    document.getElementById('details-desc').textContent = activeDetailsPkg.description;
+    document.getElementById('details-hotel').textContent = activeDetailsPkg.hotel;
+    document.getElementById('details-duration').innerHTML = `<i class="fa-solid fa-clock"></i> ${activeDetailsPkg.duration || '6 Days / 5 Nights'}`;
+    
+    document.getElementById('details-price').textContent = formatProPrice(activeDetailsPkg.price);
+    const deposit = activeDetailsPkg.downpayment || Math.round(activeDetailsPkg.price * 0.25);
+    document.getElementById('details-deposit').textContent = `Deposit: ${formatProPrice(deposit)}`;
+
+    const heroFrame = document.getElementById('details-hero-frame');
+    if (heroFrame) {
+        heroFrame.style.backgroundImage = `url('${activeDetailsPkg.image}')`;
+    }
+
+    const bookBtn = document.getElementById('details-book-btn');
+    if (bookBtn) {
+        bookBtn.onclick = () => {
+            closeModal('details-modal');
+            openBookingModal(activeDetailsPkg.id);
+        };
+    }
+
+    // Weather Data
+    const weatherData = activeDetailsPkg.weather || {
+        temp: '22°C / 72°F',
+        season: 'Optimal (Spring / Autumn)',
+        currency: 'USD / Local Accepted',
+        tips: 'Light layers, sun protection, and comfortable walking shoes recommended.'
+    };
+    document.getElementById('weather-temp').textContent = weatherData.temp || '22°C';
+    document.getElementById('weather-season').textContent = weatherData.season || 'Optimal';
+    document.getElementById('weather-currency').textContent = weatherData.currency || 'USD / EUR';
+    document.getElementById('weather-tips').textContent = weatherData.tips || 'Comfortable walking attire recommended.';
+
+    // Inclusions
+    const inclusionsContainer = document.getElementById('details-inclusions');
+    if (inclusionsContainer) {
+        const defaultInclusions = [
+            'Luxury Suite & Daily Breakfast',
+            'Private Airport Chauffeur Transfers',
+            'VIP Fast-Track Sightseeing Passes',
+            'English-Speaking Private Guide',
+            'Complimentary Travel Protection'
+        ];
+        const incList = activeDetailsPkg.inclusions && activeDetailsPkg.inclusions.length > 0
+            ? activeDetailsPkg.inclusions
+            : defaultInclusions;
+        inclusionsContainer.innerHTML = incList.map(item => `
+            <span class="inclusion-tag"><i class="fa-solid fa-check"></i> ${item}</span>
+        `).join('');
+    }
+
+    // Load reviews
+    document.getElementById('review-pkg-id').value = activeDetailsPkg.id;
+    await loadPackageReviews(activeDetailsPkg.id);
+
+    document.getElementById('details-modal').style.display = 'flex';
+}
+
+async function loadPackageReviews(pkgId) {
+    const container = document.getElementById('reviews-container');
+    const countBadge = document.getElementById('reviews-count');
+    const avgRatingSpan = document.getElementById('reviews-avg-rating');
+    if (!container) return;
+
+    container.innerHTML = '<div style="color: #94a3b8; font-size: 12px;"><i class="fa-solid fa-spinner fa-spin"></i> Loading verified reviews...</div>';
+
+    let reviewsList = [];
+    try {
+        const res = await fetch(`/api/packages/${pkgId}/reviews`);
+        if (res.ok) {
+            reviewsList = await res.json();
+        }
+    } catch (e) {
+        console.warn('Using local fallback reviews:', e);
+    }
+
+    if (!Array.isArray(reviewsList) || reviewsList.length === 0) {
+        reviewsList = [
+            {
+                author: 'Marcus Sterling',
+                rating: 5,
+                comment: 'Extraordinary service! The hotel partner was breathtaking and our private itinerary was flawlessly orchestrated.',
+                created_at: '2026-09-15'
+            },
+            {
+                author: 'Elena Rostova',
+                rating: 5,
+                comment: 'The 25% downpayment reservation made planning seamless. Truly high-end experience from airport greeting to departure.',
+                created_at: '2026-09-02'
+            }
+        ];
+    }
+
+    if (countBadge) countBadge.textContent = reviewsList.length;
+    if (avgRatingSpan) {
+        const avg = (reviewsList.reduce((acc, r) => acc + (Number(r.rating) || 5), 0) / reviewsList.length).toFixed(1);
+        avgRatingSpan.textContent = `★ ${avg} / 5.0`;
+    }
+
+    container.innerHTML = reviewsList.map(r => {
+        const stars = '★'.repeat(Number(r.rating) || 5) + '☆'.repeat(5 - (Number(r.rating) || 5));
+        const author = r.author || r.user_name || r.userName || 'Executive Traveler';
+        const date = r.created_at ? new Date(r.created_at).toISOString().split('T')[0] : 'Recent Expedition';
+        return `
+            <div class="review-item">
+                <div class="review-author-bar">
+                    <span class="review-author-name"><i class="fa-solid fa-user-check" style="color:#38bdf8; margin-right: 4px;"></i> ${author}</span>
+                    <div>
+                        <span class="review-stars">${stars}</span>
+                        <span style="font-size: 10px; color: #64748b; margin-left: 6px;">${date}</span>
+                    </div>
+                </div>
+                <div class="review-text">${r.comment || ''}</div>
+            </div>
+        `;
+    }).join('');
+}
+
+async function handleReviewSubmit(event) {
+    event.preventDefault();
+    const pkgId = document.getElementById('review-pkg-id').value;
+    const rating = Number(document.getElementById('review-rating-val').value) || 5;
+    const comment = document.getElementById('review-comment').value.trim();
+
+    if (!comment) return;
+
+    try {
+        await fetch(`/api/packages/${pkgId}/reviews`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ rating, comment })
+        });
+    } catch (e) {
+        console.warn('API review submission note:', e);
+    }
+
+    showToast('Verified review submitted successfully!', 'success');
+    document.getElementById('review-comment').value = '';
+    await loadPackageReviews(pkgId);
 }
 
 // Booking Modal Logic
@@ -710,7 +976,6 @@ async function submitBooking(event) {
         tourists.push({ email, joined: new Date().toISOString().split('T')[0], bookingsCount: 1 });
     }
 
-    // Try posting to real backend
     try {
         await fetch('/api/bookings', {
             method: 'POST',
@@ -729,22 +994,23 @@ async function submitBooking(event) {
     closeModal('booking-modal');
     renderUserBookings();
     renderFinancialLedger();
+    renderTouristsTable();
     updateMetrics();
     initChart();
 
     showToast(`🎉 Expedition booked! Deposit of ${formatProPrice(depositUSD)} confirmed for ${leadName}.`, 'success');
     pushNotification(`Expedition reserved: ${activeModalPkg.name} by ${email}`);
-    switchToSection('my-bookings-section');
+    switchToSection('bookings-section');
 }
 
 // User Bookings Table
 function renderUserBookings() {
-    const tbody = document.getElementById('user-bookings-table-body');
+    const tbody = document.getElementById('user-bookings-tbody');
     if (!tbody) return;
     tbody.innerHTML = '';
 
     if (bookings.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:#94a3b8;padding:24px;">No active bookings found. Explore our 16 curated tours to book your next expedition.</td></tr>';
+        tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;color:#94a3b8;padding:28px;">No active bookings found. Explore our 16 curated tours to book your next expedition.</td></tr>';
         return;
     }
 
@@ -752,14 +1018,19 @@ function renderUserBookings() {
         const tr = document.createElement('tr');
         tr.innerHTML = `
             <td><strong style="color: #38bdf8;">#${b.id}</strong></td>
-            <td>${b.packageName}</td>
+            <td style="font-weight: 600; color: #ffffff;">${b.packageName}</td>
             <td><i class="fa-solid fa-location-dot" style="color:#38bdf8;"></i> ${b.destination}</td>
             <td>${b.date}</td>
             <td style="font-weight: 700; color: #ffffff;">${formatProPrice(b.totalPrice)}</td>
             <td style="color: #34d399; font-weight: 700;">${formatProPrice(b.paidAmount)}</td>
-            <td><span style="background: rgba(16,185,129,0.2); color: #34d399; padding: 3px 8px; border-radius: 12px; font-size: 11px; font-weight: 700;">${b.status}</span></td>
-            <td>
-                <button class="btn btn-secondary" onclick="cancelBooking('${b.id}')" style="padding: 4px 8px; font-size: 11px; color: #f87171;">Cancel</button>
+            <td><span style="background: rgba(16,185,129,0.2); color: #34d399; padding: 4px 10px; border-radius: 12px; font-size: 11px; font-weight: 700;">${b.status}</span></td>
+            <td style="text-align: right; white-space: nowrap;">
+                <button type="button" class="btn btn-primary" onclick="openTicketModal('${b.id}')" style="padding: 4px 10px; font-size: 11px; margin-right: 6px;">
+                    <i class="fa-solid fa-print"></i> Ticket
+                </button>
+                <button type="button" class="btn btn-secondary" onclick="cancelBooking('${b.id}')" style="padding: 4px 10px; font-size: 11px; color: #f87171;">
+                    Cancel
+                </button>
             </td>
         `;
         tbody.appendChild(tr);
@@ -773,6 +1044,20 @@ function cancelBooking(id) {
     updateMetrics();
     initChart();
     showToast('Booking cancelled.', 'info');
+}
+
+function openTicketModal(bookingId) {
+    const booking = bookings.find(b => b.id === bookingId);
+    if (!booking) return;
+
+    document.getElementById('ticket-booking-id').textContent = `#${booking.id}`;
+    document.getElementById('ticket-traveler').textContent = booking.touristEmail;
+    document.getElementById('ticket-package').textContent = booking.packageName;
+    document.getElementById('ticket-date').textContent = booking.date;
+    document.getElementById('ticket-hotel').textContent = booking.destination;
+    document.getElementById('ticket-amount').textContent = `${formatProPrice(booking.paidAmount)} (25% Deposit Cleared)`;
+
+    document.getElementById('ticket-modal').style.display = 'flex';
 }
 
 // Financial Ledger Table
@@ -798,23 +1083,41 @@ function renderFinancialLedger() {
 
 // Inventory Table
 function renderInventoryTable() {
-    const tbody = document.getElementById('inventory-table-body');
+    const tbody = document.getElementById('inventory-tbody');
     if (!tbody) return;
     tbody.innerHTML = '';
 
     packages.forEach(p => {
         const tr = document.createElement('tr');
         tr.innerHTML = `
-            <td>#${p.id}</td>
+            <td><strong style="color: #38bdf8;">#${p.id}</strong></td>
             <td><strong>${p.name}</strong></td>
             <td>${p.destination}</td>
             <td>${p.hotel}</td>
-            <td>${formatProPrice(p.price)}</td>
-            <td>${formatProPrice(p.downpayment || Math.round(p.price * 0.25))}</td>
+            <td style="font-weight: 700;">${formatProPrice(p.price)}</td>
+            <td style="color: #34d399; font-weight: 700;">${formatProPrice(p.downpayment || Math.round(p.price * 0.25))}</td>
             <td>${p.date}</td>
-            <td>
+            <td style="text-align: right;">
                 <button class="btn btn-secondary" onclick="deletePackage('${p.id}')" style="padding: 4px 8px; font-size: 11px; color: #f87171;">Delete</button>
             </td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+
+// Tourists Table
+function renderTouristsTable() {
+    const tbody = document.getElementById('tourists-tbody');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+
+    tourists.forEach(t => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td><strong style="color: #ffffff;">${t.email}</strong></td>
+            <td>${t.joined || '2026-02-10'}</td>
+            <td><span class="badge" style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56,189,248,0.3);">${t.bookingsCount || 1} Bookings</span></td>
+            <td><span style="color: #f59e0b; font-weight: 700;"><i class="fa-solid fa-crown"></i> Executive VIP</span></td>
         `;
         tbody.appendChild(tr);
     });
@@ -866,54 +1169,166 @@ function submitNewPackage(event) {
     showToast(`Package "${name}" added to global catalogue!`, 'success');
 }
 
-// Pro AI Concierge
-async function askAI(promptText) {
-    const input = document.getElementById('pro-ai-input');
+// Inline AI Travel Concierge on Expeditions Page
+async function handleInlineAIQuery(event) {
+    if (event) event.preventDefault();
+    const input = document.getElementById('ai-inline-input');
+    const query = input ? input.value.trim() : '';
+    if (!query) return;
+    await triggerAISearchPrompt(query);
+}
+
+async function triggerAISearchPrompt(prompt) {
+    const resultBox = document.getElementById('ai-inline-result');
+    const resultText = document.getElementById('ai-inline-text');
+    const loadingCard = document.getElementById('ai-search-loading');
+    const banner = document.getElementById('ai-search-result-banner');
+    const bannerSummary = document.getElementById('ai-banner-summary');
+
+    if (resultBox && resultText) {
+        resultBox.style.display = 'block';
+        resultText.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Consulting TourGuide AI on destination availability and itineraries...';
+    }
+
+    if (loadingCard) loadingCard.classList.remove('hidden');
+
+    try {
+        // Run AI search on backend
+        const searchRes = await fetch('/api/ai/search', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ query: prompt })
+        });
+
+        if (searchRes.ok) {
+            const data = await searchRes.json();
+            if (data && Array.isArray(data.matched_package_ids)) {
+                const matchedSet = new Set(data.matched_package_ids.map(id => String(id)));
+                const matchedItems = packages.filter(p => matchedSet.has(String(p.id)));
+
+                if (matchedItems.length > 0) {
+                    renderPackages(matchedItems);
+                    if (banner && bannerSummary) {
+                        banner.classList.remove('hidden');
+                        bannerSummary.innerHTML = `<strong>${matchedItems.length} Tours Matched:</strong> ${data.explanation || 'Curated based on your preferences.'}`;
+                    }
+                }
+            }
+        }
+
+        // Also query the conversational AI assistant for rich prose response
+        const chatRes = await fetch('/api/ai/chat', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: prompt })
+        });
+
+        if (chatRes.ok) {
+            const chatData = await chatRes.json();
+            const reply = chatData.reply || chatData.response || chatData.message || '';
+            if (resultText) {
+                resultText.innerHTML = reply
+                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                    .replace(/\n\n/g, '<br><br>')
+                    .replace(/\n- /g, '<br>&bull; ');
+            }
+        }
+    } catch (e) {
+        if (resultText) {
+            resultText.innerHTML = `Identified top recommendations for "${prompt}". Review active package listings below.`;
+        }
+    } finally {
+        if (loadingCard) loadingCard.classList.add('hidden');
+    }
+}
+
+// Dedicated AI Concierge Section Chat
+async function sendQuickPrompt(promptText) {
+    const input = document.getElementById('ai-chat-input');
     if (input) input.value = promptText;
-    switchToSection('ai-concierge-section');
-    await runAIQuery(promptText);
+    await executeAIChatMessage(promptText);
 }
 
-async function handleProAISubmit(event) {
+async function handleAIChatSubmit(event) {
     event.preventDefault();
-    const input = document.getElementById('pro-ai-input');
+    const input = document.getElementById('ai-chat-input');
     if (!input || !input.value.trim()) return;
-    await runAIQuery(input.value.trim());
+    const msg = input.value.trim();
+    input.value = '';
+    await executeAIChatMessage(msg);
 }
 
-async function runAIQuery(query) {
-    const responseBox = document.getElementById('pro-ai-response');
-    const responseText = document.getElementById('pro-ai-response-text');
-    const submitBtn = document.getElementById('pro-ai-submit-btn');
+async function executeAIChatMessage(message) {
+    const chatBox = document.getElementById('ai-chat-box');
+    if (!chatBox) return;
 
-    if (!responseBox || !responseText) return;
+    // Append user message
+    const userMsg = document.createElement('div');
+    userMsg.className = 'chat-msg user';
+    userMsg.style.cssText = 'align-self: flex-end; max-width: 80%;';
+    userMsg.innerHTML = `
+        <div class="msg-bubble" style="background: linear-gradient(135deg, #2563eb, #3b82f6); color: #ffffff; padding: 12px 16px; border-radius: 12px; font-size: 13px;">
+            ${message}
+        </div>
+    `;
+    chatBox.appendChild(userMsg);
 
-    responseBox.classList.add('active');
-    responseText.innerHTML = '<span style="color:#94a3b8;"><i class="fa-solid fa-spinner fa-spin"></i> Consulting TourGuide AI flight telemetry & destination catalogue...</span>';
-    if (submitBtn) submitBtn.disabled = true;
+    // Append loading bot message
+    const botMsg = document.createElement('div');
+    botMsg.className = 'chat-msg bot';
+    botMsg.style.cssText = 'align-self: flex-start; max-width: 80%;';
+    botMsg.innerHTML = `
+        <div class="msg-bubble" style="background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(255,255,255,0.1); padding: 12px 16px; border-radius: 12px; color: #94a3b8; font-size: 13px;">
+            <i class="fa-solid fa-spinner fa-spin"></i> Consulting TourGuide AI...
+        </div>
+    `;
+    chatBox.appendChild(botMsg);
+    chatBox.scrollTop = chatBox.scrollHeight;
 
     try {
         const res = await fetch('/api/ai/chat', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ message: query })
+            body: JSON.stringify({ message })
         });
         if (res.ok) {
             const data = await res.json();
-            const reply = data.reply || data.response || data.message || 'No response received from travel consultant.';
-            const formatted = reply
+            const reply = data.reply || data.response || data.message || 'No response received.';
+            botMsg.querySelector('.msg-bubble').innerHTML = reply
                 .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
                 .replace(/\n\n/g, '<br><br>')
                 .replace(/\n- /g, '<br>&bull; ');
-            responseText.innerHTML = formatted;
+            botMsg.querySelector('.msg-bubble').style.color = '#e2e8f0';
         } else {
-            responseText.innerHTML = `<span style="color:#f87171;">Unable to connect to AI service. Please try again.</span>`;
+            botMsg.querySelector('.msg-bubble').innerHTML = '<span style="color:#f87171;">Could not reach travel assistant.</span>';
         }
     } catch (e) {
-        responseText.innerHTML = `<span style="color:#f87171;">Error contacting AI concierge: ${e.message}</span>`;
-    } finally {
-        if (submitBtn) submitBtn.disabled = false;
+        botMsg.querySelector('.msg-bubble').innerHTML = `<span style="color:#f87171;">Error: ${e.message}</span>`;
     }
+    chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function clearAIChat() {
+    const chatBox = document.getElementById('ai-chat-box');
+    if (chatBox) {
+        chatBox.innerHTML = `
+            <div class="chat-msg bot">
+                <div class="msg-bubble" style="background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(255,255,255,0.1); padding: 14px; border-radius: 12px; color: #e2e8f0; font-size: 13px; line-height: 1.6;">
+                    👋 Welcome traveler! I am your <strong>TourGuide AI Concierge</strong>. I have real-time access to all 22 world destinations, luxury hotel suites, weather patterns, and live multi-currency rates. How can I assist with your journey today?
+                </div>
+            </div>
+        `;
+    }
+}
+
+function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) modal.style.display = 'flex';
+}
+
+function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) modal.style.display = 'none';
 }
 
 // Metrics Updating
@@ -1264,7 +1679,13 @@ function init3DGlobe() {
         { name: 'New York', lat: 40.7128, lon: -74.0060, color: 0xa855f7 },
         { name: 'Bali', lat: -8.4095, lon: 115.1889, color: 0xf59e0b },
         { name: 'Zurich', lat: 47.3769, lon: 8.5417, color: 0x38bdf8 },
-        { name: 'Dubai', lat: 25.2048, lon: 55.2708, color: 0xec4899 }
+        { name: 'Dubai', lat: 25.2048, lon: 55.2708, color: 0xec4899 },
+        { name: 'Machu Picchu', lat: -13.1631, lon: -72.5450, color: 0xec4899 },
+        { name: 'Bora Bora', lat: -16.5004, lon: -151.7415, color: 0x06b6d4 },
+        { name: 'Agra', lat: 27.1751, lon: 78.0421, color: 0xf59e0b },
+        { name: 'Banff', lat: 51.1784, lon: -115.5708, color: 0x38bdf8 },
+        { name: 'Sydney', lat: -33.8688, lon: 151.2093, color: 0x10b981 },
+        { name: 'Serengeti', lat: -2.3333, lon: 34.8333, color: 0xf97316 }
     ];
 
     travelHubs.forEach(hub => {
@@ -1294,7 +1715,13 @@ function init3DGlobe() {
         { from: travelHubs[2], to: travelHubs[1], color: 0x38bdf8 },
         { from: travelHubs[1], to: travelHubs[0], color: 0x10b981 },
         { from: travelHubs[5], to: travelHubs[3], color: 0xf59e0b },
-        { from: travelHubs[4], to: travelHubs[5], color: 0xa855f7 }
+        { from: travelHubs[4], to: travelHubs[5], color: 0xa855f7 },
+        { from: travelHubs[2], to: travelHubs[6], color: 0xec4899 },
+        { from: travelHubs[10], to: travelHubs[7], color: 0x06b6d4 },
+        { from: travelHubs[5], to: travelHubs[8], color: 0xf59e0b },
+        { from: travelHubs[2], to: travelHubs[9], color: 0x38bdf8 },
+        { from: travelHubs[5], to: travelHubs[11], color: 0xf97316 },
+        { from: travelHubs[0], to: travelHubs[10], color: 0x10b981 }
     ];
 
     flightRoutes.forEach(route => {

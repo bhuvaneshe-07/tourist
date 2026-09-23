@@ -32,10 +32,10 @@
     <div class="background-overlay"></div>
 
     <div class="pro-page-wrapper">
-        <!-- Executive Top Navigation Bar (Replacing cramped sidebar) -->
+        <!-- Executive Top Navigation Bar -->
         <header class="pro-nav-bar">
             <div class="pro-nav-inner">
-                <!-- Left: 3D Brand Emblem & Portal Title -->
+                <!-- Left: Brand Emblem & Portal Title -->
                 <a href="/pro" class="pro-brand-group">
                     <div class="brand-logo-3d">
                         <img src="/images/pro_travel_badge_3d_1790163737393.jpg" alt="TourManager 3D Emblem" referrerPolicy="no-referrer">
@@ -49,40 +49,34 @@
                 <nav>
                     <ul class="pro-nav-links">
                         <li>
-                            <a href="#" class="pro-nav-tab active" data-target="dashboard-section" id="nav-pro-overview">
-                                <i class="fa-solid fa-cube" style="color: #38bdf8;"></i>
-                                <span>3D Command</span>
+                            <a href="#" class="pro-nav-tab active" data-target="expeditions-section" id="nav-pro-expeditions">
+                                <i class="fa-solid fa-earth-americas" style="color: #38bdf8;"></i>
+                                <span>Expeditions</span>
+                                <span class="tab-badge" id="nav-packages-count">22</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="pro-nav-tab" data-target="search-section" id="nav-pro-packages">
-                                <i class="fa-solid fa-earth-americas" style="color: #34d399;"></i>
-                                <span>Curated World Tours</span>
-                                <span class="tab-badge" id="nav-packages-count">16</span>
+                            <a href="#" class="pro-nav-tab" data-target="globe-section" id="nav-pro-globe">
+                                <i class="fa-solid fa-cube" style="color: #34d399;"></i>
+                                <span>3D Globe &amp; Telemetry</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="pro-nav-tab" data-target="ai-concierge-section" id="nav-pro-ai">
+                            <a href="#" class="pro-nav-tab" data-target="ai-section" id="nav-pro-ai">
                                 <i class="fa-solid fa-wand-magic-sparkles" style="color: #a78bfa;"></i>
-                                <span>Pro AI Concierge</span>
+                                <span>AI Concierge</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="pro-nav-tab" data-target="analytics-section" id="nav-pro-analytics">
-                                <i class="fa-solid fa-chart-line" style="color: #60a5fa;"></i>
-                                <span>Revenue &amp; Telemetry</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="pro-nav-tab" data-target="my-bookings-section" id="nav-pro-bookings">
+                            <a href="#" class="pro-nav-tab" data-target="bookings-section" id="nav-pro-bookings">
                                 <i class="fa-solid fa-receipt" style="color: #f59e0b;"></i>
-                                <span>Bookings Ledger</span>
+                                <span>My Bookings</span>
                             </a>
                         </li>
                         <li class="admin-only" style="display: none;">
-                            <a href="#" class="pro-nav-tab" data-target="inventory-section" id="nav-pro-inventory">
+                            <a href="#" class="pro-nav-tab" data-target="admin-section" id="nav-pro-admin">
                                 <i class="fa-solid fa-boxes-stacked" style="color: #ec4899;"></i>
-                                <span>Inventory Dispatch</span>
+                                <span>Admin Operations</span>
                             </a>
                         </li>
                     </ul>
@@ -126,7 +120,7 @@
                         <option value="admin">Admin View</option>
                     </select>
 
-                    <!-- Notifications Pill -->
+                    <!-- Notifications Button -->
                     <button type="button" class="btn btn-secondary" onclick="openNotificationsModal()" style="padding: 6px 10px; font-size: 11px; border-radius: 20px;" title="View Notifications">
                         <i class="fa-solid fa-bell"></i>
                         <span class="badge" id="notif-badge" style="background: #3b82f6; margin-left: 4px;">2</span>
@@ -142,127 +136,53 @@
 
         <!-- Full-Width Executive Content Container -->
         <main class="pro-main-container">
-            <!-- Dual-Experience Banner -->
-            <div style="background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(30, 41, 59, 0.85)); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: var(--radius-md); padding: 14px 20px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
-                <div style="display: flex; align-items: center; gap: 12px;">
-                    <div style="width: 38px; height: 38px; border-radius: 10px; background: rgba(59, 130, 246, 0.2); color: #38bdf8; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0;">
-                        <i class="fa-solid fa-sliders"></i>
-                    </div>
-                    <div>
-                        <div style="display: flex; align-items: center; gap: 8px;">
-                            <strong style="font-size: 13px; color: #ffffff;">Executive Pro Format Active</strong>
-                            <span style="background: rgba(16, 185, 129, 0.2); color: #34d399; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 10px;">EXPANSIVE FULL-WIDTH</span>
-                        </div>
-                        <p style="font-size: 12px; color: #94a3b8; margin: 2px 0 0 0;">Browse all 16 curated world destinations, interact with the 3D holographic globe, analyze fiscal telemetry, or switch back to Classic mode at any time.</p>
-                    </div>
-                </div>
-                <div style="display: flex; gap: 8px;">
-                    <a href="/classic" class="btn btn-secondary" style="font-size: 11px; padding: 6px 14px; text-decoration: none;">
-                        <i class="fa-solid fa-arrow-left"></i> Classic Tourist Portal
-                    </a>
-                </div>
-            </div>
-
             <!-- ==================================================================== -->
-            <!-- SECTION 1: EXECUTIVE 3D COMMAND & OVERVIEW -->
+            <!-- SECTION 1: EXPEDITIONS & HOME (FULL UNIFIED CLASSICAL + PRO FORMAT) -->
             <!-- ==================================================================== -->
-            <section id="dashboard-section" class="app-section active-section">
-                <!-- 3D Command Module Hero Banner -->
-                <div class="hero-banner-3d">
-                    <div class="hero-3d-grid">
-                        <!-- Left: Telemetry & Search Controls -->
-                        <div class="hero-telemetry-content">
-                            <div class="hero-telemetry-pill-row">
-                                <div class="hero-tag">
-                                    <i class="fa-solid fa-satellite-dish"></i> Live Travel Telemetry
-                                </div>
-                                <div class="hero-live-pill">
-                                    <span class="pulse-dot"></span> 24/7 Global Satellite Dispatch
-                                </div>
-                            </div>
-                            
-                            <h2>Next-Gen Global Travel Command Center</h2>
-                            <p>Monitor live international booking streams, track multi-currency fiscal telemetry, automate package allocations, and explore holographic route simulations with TourManager Pro.</p>
-                            
-                            <!-- Live Telemetry Stats Quick-Row -->
-                            <div class="hero-stats-row">
-                                <div class="hero-stat-item">
-                                    <div class="hero-stat-num">
-                                        <i class="fa-solid fa-route" style="color: #38bdf8; font-size: 14px;"></i> 14,850
-                                    </div>
-                                    <div class="hero-stat-label">Tracked Air Miles</div>
-                                </div>
-                                <div class="hero-stat-item">
-                                    <div class="hero-stat-num">
-                                        <i class="fa-solid fa-clock-rotate-left" style="color: #34d399; font-size: 14px;"></i> 99.8%
-                                    </div>
-                                    <div class="hero-stat-label">On-Time Precision</div>
-                                </div>
-                                <div class="hero-stat-item">
-                                    <div class="hero-stat-num">
-                                        <i class="fa-solid fa-earth-americas" style="color: #a78bfa; font-size: 14px;"></i> 16
-                                    </div>
-                                    <div class="hero-stat-label">Active Destinations</div>
-                                </div>
-                            </div>
-
-                            <!-- Quick Search Bar inside Hero -->
-                            <div class="search-filter-bar" style="margin-bottom: 0;">
-                                <div class="input-with-icon" style="flex: 2;">
-                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                    <input type="text" id="quick-dest-input" placeholder="Search destination (e.g., Swiss Alps, Bali, Tokyo, Amalfi, Santorini)...">
-                                </div>
-                                <div class="input-with-icon" style="flex: 1;">
-                                    <i class="fa-solid fa-calendar"></i>
-                                    <input type="date" id="quick-date-input">
-                                </div>
-                                <button class="btn btn-primary" onclick="quickSearch()">
-                                    <i class="fa-solid fa-paper-plane"></i> Search
-                                </button>
-                            </div>
+            <section id="expeditions-section" class="app-section active-section">
+                <!-- AI Travel Concierge Assistance Box (Executive Format) -->
+                <div class="pro-ai-hero-box" id="ai-home-box">
+                    <div class="pro-ai-header-row">
+                        <div class="pro-ai-badge">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i> Executive AI Concierge
                         </div>
-
-                        <!-- Right: 3D Holographic Visualizer Card -->
-                        <div class="hero-3d-viewport-card card-3d-tilt" id="hero-3d-card">
-                            <div class="hero-3d-controls-bar">
-                                <div class="mode-toggle-group">
-                                    <button type="button" class="mode-toggle-btn active" id="btn-view-interactive" onclick="switch3DView('interactive')">
-                                        <i class="fa-solid fa-globe"></i> Interactive 3D
-                                    </button>
-                                    <button type="button" class="mode-toggle-btn" id="btn-view-cinema" onclick="switch3DView('cinema')">
-                                        <i class="fa-solid fa-cubes"></i> 3D Cinema
-                                    </button>
-                                </div>
-                                <div class="visual-badge">
-                                    <i class="fa-solid fa-circle" style="color: #10b981; font-size: 7px;"></i> WebGL Engine
-                                </div>
-                            </div>
-
-                            <!-- Interactive Three.js WebGL Holographic Globe Canvas -->
-                            <div class="visualizer-canvas-container" id="globe3d-container" title="Click and drag to rotate the 3D globe">
-                                <canvas id="globe3d-canvas"></canvas>
-                            </div>
-
-                            <!-- High-Fidelity 3D Cinema Render View -->
-                            <div class="cinema-render-view" id="cinema-view">
-                                <img src="/images/pro_hero_globe_3d_1790163721060.jpg" alt="3D Holographic Global Travel Command" referrerPolicy="no-referrer">
-                                <div class="render-overlay-badge">
-                                    <i class="fa-solid fa-wand-magic-sparkles"></i> 8K 3D Octane Holographic Travel Orbit
-                                </div>
-                            </div>
+                        <span class="pro-ai-status"><span class="pulse-dot"></span> Online &amp; Ready</span>
+                    </div>
+                    <h3>Ask TourGuide AI: Your Executive Travel Concierge</h3>
+                    <p class="pro-ai-hero-desc">Ask for curated recommendations, custom itineraries, budget allocations, or travel tips across all our 22 world-class destinations.</p>
+                    <form id="ai-inline-form" class="pro-ai-input-group" onsubmit="handleInlineAIQuery(event)">
+                        <input type="text" id="ai-inline-input" class="pro-ai-input" placeholder="e.g. Recommend a honeymoon getaway or a scenic mountain trip under $1,500...">
+                        <button type="submit" class="btn btn-primary" style="padding: 10px 20px; font-size: 13px;">
+                            <i class="fa-solid fa-paper-plane"></i> Ask AI
+                        </button>
+                    </form>
+                    <div class="pro-ai-prompt-chips">
+                        <span style="font-size: 11px; color: #94a3b8; font-weight: 700; text-transform: uppercase;">Quick Prompts:</span>
+                        <button type="button" class="pro-ai-chip" onclick="triggerAISearchPrompt('Beach escapes under $1500')">🏖️ Beach escapes &lt; $1,500</button>
+                        <button type="button" class="pro-ai-chip" onclick="triggerAISearchPrompt('Historic cultural tours with temples and monuments')">🏛️ Cultural wonders</button>
+                        <button type="button" class="pro-ai-chip" onclick="triggerAISearchPrompt('Winter alpine adventures with snow and glaciers')">❄️ Alpine snow &amp; glaciers</button>
+                        <button type="button" class="pro-ai-chip" onclick="triggerAISearchPrompt('Santorini and Bali romantic packages')">🌅 Santorini &amp; Bali</button>
+                        <button type="button" class="pro-ai-chip" onclick="triggerAISearchPrompt('Affordable luxury packages under $1200')">💰 Luxury &lt; $1,200</button>
+                    </div>
+                    <!-- Inline AI Result Panel -->
+                    <div id="ai-inline-result" class="pro-ai-result-panel" style="display: none;">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px;">
+                            <strong style="color: #38bdf8;"><i class="fa-solid fa-robot"></i> TourGuide AI Response:</strong>
+                            <button type="button" onclick="document.getElementById('ai-inline-result').style.display='none'" style="background:none;border:none;color:#94a3b8;cursor:pointer;">&times;</button>
                         </div>
+                        <div id="ai-inline-text"></div>
                     </div>
                 </div>
 
-                <!-- Metrics Summary Cards with 3D Tilt -->
-                <div class="summary-cards">
+                <!-- Executive 3D Command & Visualizer Strip -->
+                <div class="summary-cards" style="margin-bottom: 24px;">
                     <div class="card card-3d-tilt">
                         <div class="card-icon bg-blue">
-                            <i class="fa-solid fa-plane"></i>
+                            <i class="fa-solid fa-earth-americas"></i>
                         </div>
                         <div class="card-info">
-                            <h3>Total Curated Tours</h3>
-                            <div class="card-value" id="card-packages-count">16</div>
+                            <h3>Curated Expeditions</h3>
+                            <div class="card-value" id="card-packages-count">22</div>
                         </div>
                     </div>
                     <div class="card card-3d-tilt">
@@ -280,7 +200,7 @@
                         </div>
                         <div class="card-info">
                             <h3>Processed Revenue</h3>
-                            <div class="card-value" id="card-payments-total">$200</div>
+                            <div class="card-value" id="card-payments-total">$487</div>
                         </div>
                     </div>
                     <div class="card card-3d-tilt">
@@ -288,59 +208,213 @@
                             <i class="fa-solid fa-users"></i>
                         </div>
                         <div class="card-info">
-                            <h3>Registered Tourists</h3>
+                            <h3>Registered Travelers</h3>
                             <div class="card-value" id="card-tourists-count">1</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- 3D Luxury Expedition Spotlight Banner -->
-                <div class="spotlight-3d-card card-3d-tilt">
-                    <div class="spotlight-media-frame">
-                        <span class="spotlight-floating-pill">
-                            <i class="fa-solid fa-gem" style="color: #38bdf8;"></i> 3D Expedition
-                        </span>
-                        <img src="/images/pro_destination_3d_1790163754580.jpg" alt="3D Luxury World Expedition Diorama" referrerPolicy="no-referrer">
+                <!-- Collapsible / Interactive 3D Globe & Chart Preview Deck -->
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 20px; margin-bottom: 28px;">
+                    <!-- Left: Interactive Three.js Globe Module -->
+                    <div class="hero-3d-viewport-card card-3d-tilt" style="min-height: 280px; padding: 16px; border-radius: var(--radius-md);">
+                        <div class="hero-3d-controls-bar" style="margin-bottom: 8px;">
+                            <div class="mode-toggle-group">
+                                <button type="button" class="mode-toggle-btn active" id="btn-view-interactive" onclick="switch3DView('interactive')">
+                                    <i class="fa-solid fa-globe"></i> Interactive 3D
+                                </button>
+                                <button type="button" class="mode-toggle-btn" id="btn-view-cinema" onclick="switch3DView('cinema')">
+                                    <i class="fa-solid fa-cubes"></i> 3D Cinema
+                                </button>
+                            </div>
+                            <div class="visual-badge">
+                                <i class="fa-solid fa-circle" style="color: #10b981; font-size: 7px;"></i> 3D Holographic Orbit
+                            </div>
+                        </div>
+                        <div class="visualizer-canvas-container" id="globe3d-container" style="height: 220px;" title="Click and drag to rotate the 3D globe">
+                            <canvas id="globe3d-canvas"></canvas>
+                        </div>
+                        <div class="cinema-render-view" id="cinema-view" style="display: none; height: 220px;">
+                            <img src="/images/pro_hero_globe_3d_1790163721060.jpg" alt="3D Holographic Global Travel Command" referrerPolicy="no-referrer">
+                        </div>
                     </div>
-                    <div class="spotlight-details">
-                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
-                            <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #a78bfa; letter-spacing: 0.05em;">Curated World Diorama</span>
-                            <span style="background: rgba(167, 139, 250, 0.15); color: #c4b5fd; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px;">PRO EXCLUSIVE</span>
-                        </div>
-                        <h3>Private Overwater Haven &amp; Alpine Odyssey</h3>
-                        <p>Experience ultra-luxury expeditions curated for discerning travelers: from private Maldives overwater bungalows to helicopter tours of the Swiss Matterhorn and Amalfi yacht excursions.</p>
-                        <div class="spotlight-stats-chips">
-                            <div class="spotlight-chip-item">
-                                <i class="fa-solid fa-umbrella-beach" style="color: #38bdf8;"></i> Tropical Maldives
+
+                    <!-- Right: Revenue Telemetry Chart Preview -->
+                    <div class="card" style="padding: 16px; border-radius: var(--radius-md); display: flex; flex-direction: column; justify-content: space-between;">
+                        <div class="chart-header" style="margin-bottom: 10px;">
+                            <div>
+                                <h3 style="font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 8px; color: #fff;">
+                                    <i class="fa-solid fa-chart-line" style="color: var(--accent-blue);"></i> Fiscal Telemetry (<span id="chart-currency-label">USD</span>)
+                                </h3>
+                                <p style="font-size: 11px; color: var(--text-secondary); margin-top: 2px;">Real-time booking revenue velocity across 22 world destinations</p>
                             </div>
-                            <div class="spotlight-chip-item">
-                                <i class="fa-solid fa-mountain" style="color: #34d399;"></i> Swiss Zermatt
-                            </div>
-                            <div class="spotlight-chip-item">
-                                <i class="fa-solid fa-sailboat" style="color: #f59e0b;"></i> Amalfi Charter
-                            </div>
-                            <div class="spotlight-chip-item" style="color: #a78bfa; font-weight: 700;">
-                                <i class="fa-solid fa-shield-halved"></i> 100% Guaranteed Concierge
+                            <div class="chart-timeframe-controls">
+                                <button type="button" class="chart-tf-btn" onclick="setChartTimeframe('7d', this)">7D</button>
+                                <button type="button" class="chart-tf-btn active" onclick="setChartTimeframe('30d', this)">30D</button>
+                                <button type="button" class="chart-tf-btn" onclick="setChartTimeframe('90d', this)">90D</button>
+                                <button type="button" class="btn btn-secondary" onclick="exportDataCSV('bookings')" style="padding: 3px 8px; font-size: 10px;">
+                                    <i class="fa-solid fa-file-csv"></i> CSV
+                                </button>
                             </div>
                         </div>
-                        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-                            <button type="button" class="btn btn-primary" onclick="switchToSection('search-section')" style="font-size: 12px; padding: 8px 16px;">
-                                <i class="fa-solid fa-compass"></i> Explore All 16 Tours &rarr;
-                            </button>
-                            <a href="/classic" class="btn btn-secondary" style="font-size: 12px; padding: 8px 16px; text-decoration: none;">
-                                <i class="fa-solid fa-globe" style="color: #38bdf8;"></i> View in Classic Catalog
-                            </a>
+                        <div style="height: 210px; position: relative;">
+                            <canvas id="revenueChart"></canvas>
                         </div>
                     </div>
                 </div>
 
-                <!-- Featured Travel Hotspots Grid -->
+                <!-- Section Heading Row -->
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 12px;">
+                    <div>
+                        <h2 style="font-size: 22px; font-weight: 800; color: #ffffff;">Explore Curated World Expeditions</h2>
+                        <p style="font-size: 13px; color: var(--text-secondary); margin-top: 2px;">Hand-picked luxury tours across 6 continents with 25% instant downpayment reservation.</p>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <button type="button" id="pro-header-compare-btn" class="btn btn-secondary btn-sm" onclick="openProCompareModal()" style="display: none; font-size: 12px; padding: 6px 14px; border-color: rgba(56, 189, 248, 0.4); color: #38bdf8; background: rgba(56, 189, 248, 0.1);">
+                            <i class="fa-solid fa-code-compare"></i> Compare Selected (<span id="pro-header-compare-count">0</span>)
+                        </button>
+                        <span style="background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.35); padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 700;">
+                            <i class="fa-solid fa-compass"></i> <span id="packages-count-badge">22 Active Expeditions</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Category Theme Filter Chips -->
+                <div class="pro-filter-row" id="category-filter-chips" style="margin-bottom: 12px;">
+                    <button type="button" class="pro-chip active" onclick="filterByCategory('')">🌟 All Styles (22)</button>
+                    <button type="button" class="pro-chip" onclick="filterByCategory('Beach & Islands')">🏖️ Beach &amp; Islands</button>
+                    <button type="button" class="pro-chip" onclick="filterByCategory('Cultural & Heritage')">🏛️ Cultural &amp; Heritage</button>
+                    <button type="button" class="pro-chip" onclick="filterByCategory('Alpine & Winter')">❄️ Alpine &amp; Winter</button>
+                    <button type="button" class="pro-chip" onclick="filterByCategory('Modern Metropolises')">🏙️ Modern Metropolises</button>
+                    <button type="button" class="pro-chip" onclick="filterByCategory('Nature & Wildlife')">🌿 Nature &amp; Wildlife</button>
+                </div>
+
+                <!-- Destination Discovery Pills -->
+                <div class="pro-filter-row" id="destination-filter-pills" style="margin-bottom: 16px;">
+                    <button type="button" class="pro-chip active" onclick="filterByDestination('')">All Destinations</button>
+                    <button type="button" class="pro-chip" onclick="filterByDestination('Santorini')">🇬🇷 Santorini</button>
+                    <button type="button" class="pro-chip" onclick="filterByDestination('Kyoto')">🇯🇵 Kyoto</button>
+                    <button type="button" class="pro-chip" onclick="filterByDestination('Bali')">🇮🇩 Bali</button>
+                    <button type="button" class="pro-chip" onclick="filterByDestination('Machu Picchu')">🇵🇪 Machu Picchu</button>
+                    <button type="button" class="pro-chip" onclick="filterByDestination('Bora Bora')">🇵🇫 Bora Bora</button>
+                    <button type="button" class="pro-chip" onclick="filterByDestination('Agra')">🇮🇳 Agra &amp; Taj Mahal</button>
+                    <button type="button" class="pro-chip" onclick="filterByDestination('Barcelona')">🇪🇸 Barcelona</button>
+                    <button type="button" class="pro-chip" onclick="filterByDestination('New York')">🇺🇸 New York</button>
+                    <button type="button" class="pro-chip" onclick="filterByDestination('Cairo')">🇪🇬 Cairo</button>
+                    <button type="button" class="pro-chip" onclick="filterByDestination('Reykjavik')">🇮🇸 Iceland</button>
+                    <button type="button" class="pro-chip" onclick="filterByDestination('Banff')">🇨🇦 Banff &amp; Rockies</button>
+                    <button type="button" class="pro-chip" onclick="filterByDestination('Sydney')">🇦🇺 Sydney</button>
+                    <button type="button" class="pro-chip" onclick="filterByDestination('Serengeti')">🇹🇿 Serengeti</button>
+                    <button type="button" class="pro-chip" onclick="filterByDestination('Cape Town')">🇿🇦 Cape Town</button>
+                    <button type="button" class="pro-chip" onclick="filterByDestination('Paris')">🇫🇷 Paris</button>
+                    <button type="button" class="pro-chip" onclick="filterByDestination('Tokyo')">🇯🇵 Tokyo</button>
+                    <button type="button" class="pro-chip" onclick="filterByDestination('Dubai')">🇦🇪 Dubai</button>
+                    <button type="button" class="pro-chip" onclick="filterByDestination('Maldives')">🇲🇻 Maldives</button>
+                    <button type="button" class="pro-chip" onclick="filterByDestination('Switzerland')">🇨🇭 Switzerland</button>
+                    <button type="button" class="pro-chip" onclick="filterByDestination('Rome')">🇮🇹 Rome</button>
+                    <button type="button" class="pro-chip" onclick="filterByDestination('Singapore')">🇸🇬 Singapore</button>
+                    <button type="button" class="pro-chip" onclick="filterByDestination('Amalfi')">🇮🇹 Amalfi</button>
+                </div>
+
+                <!-- Comprehensive Search & Sort Bar -->
+                <div class="pro-search-bar-card" style="margin-bottom: 24px;">
+                    <div class="pro-search-inputs-grid">
+                        <input type="text" id="search-dest" placeholder="Search by destination, country, hotel or landmark..." class="pro-form-control" oninput="filterPackages()">
+                        <input type="date" id="search-date" class="pro-form-control" onchange="filterPackages()" title="Travel Date">
+                        <select id="filter-price-range" class="pro-form-control" onchange="filterPackages()" title="Price Range">
+                            <option value="">Any Budget</option>
+                            <option value="under-1000">Under $1,000</option>
+                            <option value="1000-1500">$1,000 - $1,500</option>
+                            <option value="1500-2000">$1,500 - $2,000</option>
+                            <option value="above-2000">Above $2,000</option>
+                        </select>
+                        <select id="filter-sort-by" class="pro-form-control" onchange="filterPackages()" title="Sort Packages">
+                            <option value="recommended">Sort: Recommended</option>
+                            <option value="price-asc">Price: Low to High</option>
+                            <option value="price-desc">Price: High to Low</option>
+                            <option value="date-soonest">Date: Soonest First</option>
+                        </select>
+                        <div class="pro-search-actions">
+                            <button type="button" class="btn btn-primary" onclick="filterPackages()">
+                                <i class="fa-solid fa-magnifying-glass"></i> Search
+                            </button>
+                            <button type="button" id="ai-search-btn" class="btn btn-secondary" onclick="triggerAISearchPrompt(document.getElementById('search-dest')?.value || 'Luxury beach getaway')" style="border-color: #38bdf8; color: #38bdf8;">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i> AI Search
+                            </button>
+                            <button type="button" class="btn btn-secondary" onclick="resetSearch()">Clear</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Search Loading State -->
+                <div id="ai-search-loading" class="card hidden" style="text-align: center; padding: 30px; margin-bottom: 24px; border: 1px dashed #38bdf8;">
+                    <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 28px; color: #38bdf8; margin-bottom: 12px;"></i>
+                    <h4 style="color: #ffffff; font-size: 16px;">Analyzing travel preferences with TourGuide AI...</h4>
+                    <p style="color: #94a3b8; font-size: 13px;">Scanning destination catalog, live pricing, and verified traveler reviews</p>
+                </div>
+
+                <!-- AI Search Result Banner -->
+                <div id="ai-search-result-banner" class="card hidden" style="background: rgba(15, 23, 42, 0.9); border: 1px solid #38bdf8; padding: 18px; margin-bottom: 24px; border-radius: var(--radius-md);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <span style="font-weight: 700; color: #38bdf8; font-size: 14px;"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Search Recommendations</span>
+                        <button type="button" class="btn btn-secondary" onclick="resetSearch()" style="font-size: 11px; padding: 4px 10px;">Show All 22 Tours</button>
+                    </div>
+                    <p id="ai-banner-summary" style="font-size: 13px; color: #e2e8f0; margin: 0;"></p>
+                </div>
+
+                <!-- Complete 16 World Tour Package Cards Grid -->
+                <div id="package-grid-container" class="package-grid"></div>
+            </section>
+
+            <!-- ==================================================================== -->
+            <!-- SECTION 2: DEDICATED 3D COMMAND & TELEMETRY VIEW -->
+            <!-- ==================================================================== -->
+            <section id="globe-section" class="app-section">
+                <div class="hero-banner-3d" style="margin-bottom: 24px;">
+                    <div class="hero-3d-grid">
+                        <div class="hero-telemetry-content">
+                            <div class="hero-telemetry-pill-row">
+                                <div class="hero-tag">
+                                    <i class="fa-solid fa-satellite-dish"></i> Global Satellite Telemetry
+                                </div>
+                                <div class="hero-live-pill">
+                                    <span class="pulse-dot"></span> 24/7 International Dispatch
+                                </div>
+                            </div>
+                            <h2>Interactive 3D WebGL Holographic Command</h2>
+                            <p>Rotate the holographic Earth globe to view real-time expedition nodes across Europe, Asia, Africa, and the Americas. Track seasonal climate forecasts and live air corridors.</p>
+                            
+                            <div class="hero-stats-row">
+                                <div class="hero-stat-item">
+                                    <div class="hero-stat-num"><i class="fa-solid fa-route" style="color: #38bdf8;"></i> 14,850</div>
+                                    <div class="hero-stat-label">Air Miles Tracked</div>
+                                </div>
+                                <div class="hero-stat-item">
+                                    <div class="hero-stat-num"><i class="fa-solid fa-clock-rotate-left" style="color: #34d399;"></i> 99.8%</div>
+                                    <div class="hero-stat-label">On-Time Reliability</div>
+                                </div>
+                                <div class="hero-stat-item">
+                                    <div class="hero-stat-num"><i class="fa-solid fa-earth-americas" style="color: #a78bfa;"></i> 16</div>
+                                    <div class="hero-stat-label">World Nodes</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="hero-3d-viewport-card card-3d-tilt" style="min-height: 340px;">
+                            <div class="visualizer-canvas-container" style="height: 300px;">
+                                <canvas id="globe3d-canvas-secondary"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Popular Destination Shortcuts -->
                 <div class="featured-destinations-panel">
                     <h2 style="font-size: 16px; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 8px;">
                         <i class="fa-solid fa-fire" style="color: var(--accent-orange);"></i> Popular Destination Shortcuts
                     </h2>
                     <div class="hotspot-grid">
-                        <div class="hotspot-chip" style="background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent), url('https://images.unsplash.com/photo-1502784444187-359ac186c5bb?auto=format&fit=crop&w=400&q=80');" onclick="filterByDestination('Swiss Alps')">
+                        <div class="hotspot-chip" style="background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent), url('https://images.unsplash.com/photo-1502784444187-359ac186c5bb?auto=format&fit=crop&w=400&q=80');" onclick="filterByDestination('Switzerland')">
                             <span><i class="fa-solid fa-mountain"></i> Swiss Alps</span>
                         </div>
                         <div class="hotspot-chip" style="background-image: linear-gradient(to top, rgba(0,0,0,0.8), transparent), url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&q=80');" onclick="filterByDestination('Bali')">
@@ -360,237 +434,82 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Revenue Analytics Chart Section -->
-                <div class="analytics-chart-panel card" style="margin-top: 24px;">
-                    <div class="chart-header">
-                        <div>
-                            <h2 style="font-size: 16px; font-weight: 700; display: flex; align-items: center; gap: 8px;">
-                                <i class="fa-solid fa-chart-line" style="color: var(--accent-blue);"></i> Revenue &amp; Booking Trajectory
-                            </h2>
-                            <p style="font-size: 12px; color: var(--text-secondary); margin-top: 2px;">Aggregated fiscal performance across all destinations in <strong id="chart-currency-label">USD</strong></p>
-                        </div>
-                        <div class="chart-timeframe-controls">
-                            <button type="button" class="chart-tf-btn" onclick="setChartTimeframe('7d', this)">7D</button>
-                            <button type="button" class="chart-tf-btn active" onclick="setChartTimeframe('30d', this)">30D</button>
-                            <button type="button" class="chart-tf-btn" onclick="setChartTimeframe('90d', this)">90D</button>
-                            <button type="button" class="chart-tf-btn" onclick="setChartTimeframe('1y', this)">1Y</button>
-                            <button type="button" class="btn btn-secondary" onclick="exportDataCSV('bookings')" style="padding: 4px 10px; font-size: 11px;">
-                                <i class="fa-solid fa-file-csv"></i> Export CSV
-                            </button>
-                        </div>
-                    </div>
-                    <div style="height: 260px; position: relative;">
-                        <canvas id="revenueChart"></canvas>
-                    </div>
-                </div>
             </section>
 
             <!-- ==================================================================== -->
-            <!-- SECTION 2: CURATED WORLD TOURS (ALL 16 DESTINATIONS) -->
+            <!-- SECTION 3: DEDICATED PRO AI CONCIERGE SUITE -->
             <!-- ==================================================================== -->
-            <section id="search-section" class="app-section">
-                <!-- Section Header -->
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
-                    <div>
-                        <h2 style="font-size: 24px; font-weight: 800; color: #ffffff;">Curated Global Expeditions &amp; Luxury Tours</h2>
-                        <p style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">Explore our full catalogue of hand-picked luxury escapes across 6 continents with 25% downpayment reservation.</p>
-                    </div>
-                    <div>
-                        <span style="background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.4); padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 700;">
-                            <i class="fa-solid fa-compass"></i> <span id="packages-count-badge">16 Active Expeditions</span>
-                        </span>
-                    </div>
-                </div>
-
-                <!-- Category Theme Filter Chips -->
-                <div class="pro-filter-row" id="category-filter-chips">
-                    <button type="button" class="pro-chip active" onclick="filterByCategory('')">🌟 All Styles (16)</button>
-                    <button type="button" class="pro-chip" onclick="filterByCategory('Beach & Islands')">🏖️ Beach &amp; Islands</button>
-                    <button type="button" class="pro-chip" onclick="filterByCategory('Cultural & Heritage')">🏛️ Cultural &amp; Heritage</button>
-                    <button type="button" class="pro-chip" onclick="filterByCategory('Alpine & Winter')">❄️ Alpine &amp; Winter</button>
-                    <button type="button" class="pro-chip" onclick="filterByCategory('Modern Metropolises')">🏙️ Modern Metropolises</button>
-                    <button type="button" class="pro-chip" onclick="filterByCategory('Nature & Wildlife')">🌿 Nature &amp; Wildlife</button>
-                </div>
-
-                <!-- Destination Discovery Pills -->
-                <div class="pro-filter-row" id="destination-filter-pills" style="margin-top: -8px;">
-                    <button type="button" class="pro-chip active" onclick="filterByDestination('')">All Destinations</button>
-                    <button type="button" class="pro-chip" onclick="filterByDestination('Santorini')">🇬🇷 Santorini</button>
-                    <button type="button" class="pro-chip" onclick="filterByDestination('Kyoto')">🇯🇵 Kyoto</button>
-                    <button type="button" class="pro-chip" onclick="filterByDestination('Bali')">🇮🇩 Bali</button>
-                    <button type="button" class="pro-chip" onclick="filterByDestination('Barcelona')">🇪🇸 Barcelona</button>
-                    <button type="button" class="pro-chip" onclick="filterByDestination('New York')">🇺🇸 New York</button>
-                    <button type="button" class="pro-chip" onclick="filterByDestination('Cairo')">🇪🇬 Cairo</button>
-                    <button type="button" class="pro-chip" onclick="filterByDestination('Iceland')">🇮🇸 Iceland</button>
-                    <button type="button" class="pro-chip" onclick="filterByDestination('Cape Town')">🇿🇦 Cape Town</button>
-                    <button type="button" class="pro-chip" onclick="filterByDestination('Paris')">🇫🇷 Paris</button>
-                    <button type="button" class="pro-chip" onclick="filterByDestination('Tokyo')">🇯🇵 Tokyo</button>
-                    <button type="button" class="pro-chip" onclick="filterByDestination('Dubai')">🇦🇪 Dubai</button>
-                    <button type="button" class="pro-chip" onclick="filterByDestination('Maldives')">🇲🇻 Maldives</button>
-                    <button type="button" class="pro-chip" onclick="filterByDestination('Switzerland')">🇨🇭 Switzerland</button>
-                    <button type="button" class="pro-chip" onclick="filterByDestination('Rome')">🇮🇹 Rome</button>
-                    <button type="button" class="pro-chip" onclick="filterByDestination('Singapore')">🇸🇬 Singapore</button>
-                    <button type="button" class="pro-chip" onclick="filterByDestination('Amalfi')">🇮🇹 Amalfi</button>
-                </div>
-
-                <!-- Comprehensive Search & Sort Bar -->
-                <div class="pro-search-bar-card">
-                    <div class="pro-search-inputs-grid">
-                        <input type="text" id="search-dest" placeholder="Search by destination, country, hotel or landmark..." class="pro-form-control" oninput="filterPackages()">
-                        <input type="date" id="search-date" class="pro-form-control" onchange="filterPackages()" title="Travel Date">
-                        <select id="filter-price-range" class="pro-form-control" onchange="filterPackages()">
-                            <option value="">Any Budget</option>
-                            <option value="under-1000">Under $1,000</option>
-                            <option value="1000-1500">$1,000 - $1,500</option>
-                            <option value="1500-2000">$1,500 - $2,000</option>
-                            <option value="above-2000">Above $2,000</option>
-                        </select>
-                        <select id="filter-sort-by" class="pro-form-control" onchange="filterPackages()">
-                            <option value="recommended">Sort: Recommended</option>
-                            <option value="price-asc">Price: Low to High</option>
-                            <option value="price-desc">Price: High to Low</option>
-                            <option value="date-soonest">Departure Date</option>
-                        </select>
-                        <div style="display: flex; gap: 8px;">
-                            <button type="button" class="btn btn-secondary" onclick="resetSearch()">
-                                <i class="fa-solid fa-rotate-left"></i> Reset
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Responsive Package Grid (All 16 Destinations) -->
-                <div class="package-grid-pro" id="package-grid-container">
-                    <!-- Populated dynamically by script.js with all 16 items -->
-                </div>
-            </section>
-
-            <!-- ==================================================================== -->
-            <!-- SECTION 3: PRO AI CONCIERGE -->
-            <!-- ==================================================================== -->
-            <section id="ai-concierge-section" class="app-section">
-                <div class="pro-ai-concierge-card">
-                    <div class="pro-ai-header">
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <div class="pro-ai-tag">
-                                <i class="fa-solid fa-wand-magic-sparkles"></i> Pro AI Travel Engine
+            <section id="ai-section" class="app-section">
+                <div class="ai-concierge-container card" style="max-width: 900px; margin: 0 auto; padding: 24px;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 16px; margin-bottom: 20px;">
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <div style="width: 44px; height: 44px; border-radius: 12px; background: rgba(167, 139, 250, 0.2); color: #c4b5fd; display: flex; align-items: center; justify-content: center; font-size: 20px;">
+                                <i class="fa-solid fa-robot"></i>
                             </div>
-                            <span style="font-size: 11px; color: #34d399; font-weight: 700;">
-                                <span class="pulse-dot"></span> Online &amp; Grounded
-                            </span>
+                            <div>
+                                <h3 style="font-size: 18px; font-weight: 800; color: #ffffff;">TourGuide AI Concierge Suite</h3>
+                                <p style="font-size: 12px; color: #94a3b8; margin: 2px 0 0 0;"><span class="pulse-dot"></span> Powered by Gemini AI &amp; World Tour Knowledge Base</p>
+                            </div>
                         </div>
-                        <span style="font-size: 12px; color: var(--text-secondary);">Connected to 16 Active Tour Itineraries</span>
-                    </div>
-
-                    <h2 style="font-size: 22px; font-weight: 800; color: #ffffff; margin-bottom: 6px;">Ask TourGuide AI: Your Executive Travel Concierge</h2>
-                    <p style="font-size: 13px; color: var(--text-secondary);">Ask for customized multi-day itineraries, romantic honeymoons, scenic train routes, packing checklists, or budget comparisons across our global tour catalogue.</p>
-
-                    <!-- Prompt Chips -->
-                    <div class="pro-filter-row" style="margin-top: 14px; margin-bottom: 12px;">
-                        <span style="font-size: 11px; font-weight: 700; color: #a78bfa; text-transform: uppercase;">Quick Prompts:</span>
-                        <button type="button" class="pro-chip" onclick="askAI('What are the best beach escapes under $1,500?')">🏖️ Beach escapes &lt; $1,500</button>
-                        <button type="button" class="pro-chip" onclick="askAI('Recommend top cultural tours with historic temples and monuments.')">🏛️ Cultural &amp; historic wonders</button>
-                        <button type="button" class="pro-chip" onclick="askAI('Tell me about traveling to Iceland or Switzerland in winter.')">❄️ Winter &amp; glaciers</button>
-                        <button type="button" class="pro-chip" onclick="askAI('Compare Santorini vs Amalfi Coast for a 5-day honeymoon.')">🌅 Santorini vs Amalfi</button>
-                        <button type="button" class="pro-chip" onclick="askAI('What luxury perks are included in the Maldives or Dubai packages?')">💎 Luxury perks breakdown</button>
-                    </div>
-
-                    <!-- AI Input Bar -->
-                    <form id="pro-ai-form" onsubmit="handleProAISubmit(event)">
-                        <div class="pro-ai-input-row">
-                            <input type="text" id="pro-ai-input" class="pro-form-control" style="font-size: 14px; padding: 12px 16px;" placeholder="Ask anything, e.g. 'Plan a 4-day culinary and photography trip to Kyoto'...">
-                            <button type="submit" class="btn btn-primary" id="pro-ai-submit-btn" style="padding: 0 24px;">
-                                <i class="fa-solid fa-paper-plane"></i> Ask AI
-                            </button>
-                        </div>
-                    </form>
-
-                    <!-- AI Response Area -->
-                    <div id="pro-ai-response" class="pro-ai-response-box">
-                        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px; color: #a78bfa; font-weight: 700;">
-                            <i class="fa-solid fa-wand-magic-sparkles"></i> TourGuide AI Response:
-                        </div>
-                        <div id="pro-ai-response-text"></div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ==================================================================== -->
-            <!-- SECTION 4: REVENUE & TELEMETRY LEDGER -->
-            <!-- ==================================================================== -->
-            <section id="analytics-section" class="app-section">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
-                    <div>
-                        <h2 style="font-size: 22px; font-weight: 800; color: #ffffff;">Executive Telemetry &amp; Financial Ledger</h2>
-                        <p style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">Live tracking of traveler bookings, payment settlements, and conversion rates.</p>
-                    </div>
-                    <div>
-                        <button class="btn btn-secondary" onclick="exportDataCSV('bookings')">
-                            <i class="fa-solid fa-file-csv"></i> Download CSV Ledger
+                        <button type="button" class="btn btn-secondary" onclick="clearAIChat()" style="font-size: 12px; padding: 6px 12px;">
+                            <i class="fa-solid fa-rotate-right"></i> Reset Chat
                         </button>
                     </div>
+
+                    <div id="ai-chat-box" style="min-height: 380px; max-height: 480px; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; padding-right: 8px; margin-bottom: 18px;">
+                        <div class="chat-msg bot">
+                            <div class="msg-bubble" style="background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(255,255,255,0.1); padding: 14px; border-radius: 12px; color: #e2e8f0; font-size: 13px; line-height: 1.6;">
+                                👋 Welcome traveler! I am your <strong>TourGuide AI Concierge</strong>. I have real-time access to all 16 world destinations, luxury hotel suites, weather patterns, and live multi-currency rates. How can I assist with your journey today?
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pro-ai-prompt-chips" style="margin-bottom: 14px;">
+                        <button type="button" class="pro-ai-chip" onclick="sendQuickPrompt('Compare Maldives vs Santorini for a honeymoon')">🏝️ Maldives vs Santorini</button>
+                        <button type="button" class="pro-ai-chip" onclick="sendQuickPrompt('Plan a 5-day cultural trip to Kyoto and Tokyo')">⛩️ 5-Day Japan Itinerary</button>
+                        <button type="button" class="pro-ai-chip" onclick="sendQuickPrompt('What are the best tours available under $1,200?')">🏷️ Best tours &lt; $1,200</button>
+                    </div>
+
+                    <form id="ai-chat-form" onsubmit="handleAIChatSubmit(event)" style="display: flex; gap: 10px;">
+                        <input type="text" id="ai-chat-input" class="pro-form-control" placeholder="Ask anything about destinations, custom budgets, weather, or luxury suites..." style="flex: 1;" required>
+                        <button type="submit" class="btn btn-primary" style="padding: 10px 24px;">
+                            <i class="fa-solid fa-paper-plane"></i> Send
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- ==================================================================== -->
+            <!-- SECTION 4: MY BOOKINGS LEDGER & E-TICKET VOUCHERS -->
+            <!-- ==================================================================== -->
+            <section id="bookings-section" class="app-section">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
+                    <div>
+                        <h2 style="font-size: 22px; font-weight: 800; color: #ffffff;">Executive Bookings Ledger</h2>
+                        <p style="font-size: 13px; color: var(--text-secondary); margin-top: 2px;">Review confirmed bookings, download official e-ticket travel vouchers, or manage cancellations.</p>
+                    </div>
+                    <button type="button" class="btn btn-secondary" onclick="exportDataCSV('bookings')">
+                        <i class="fa-solid fa-file-csv"></i> Export Ledger CSV
+                    </button>
                 </div>
 
-                <!-- Data Table Card -->
-                <div class="card" style="padding: 20px;">
+                <div class="card" style="padding: 0; overflow: hidden; border-radius: var(--radius-md);">
                     <div class="table-responsive">
-                        <table class="data-table">
+                        <table class="pro-data-table">
                             <thead>
                                 <tr>
                                     <th>Booking ID</th>
-                                    <th>Tourist</th>
-                                    <th>Package</th>
-                                    <th>Departure Date</th>
-                                    <th>Total Cost</th>
-                                    <th>Downpayment</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody id="financial-bookings-table-body">
-                                <tr>
-                                    <td>#BK-9081</td>
-                                    <td>alex.carter@voyage.io</td>
-                                    <td>Swiss Alps Luxury Expedition</td>
-                                    <td>2026-11-15</td>
-                                    <td class="price-format" data-price="1200">$1,200</td>
-                                    <td class="price-format" data-price="300" style="color: #34d399; font-weight: 700;">$300 (Paid)</td>
-                                    <td><span style="background: rgba(16,185,129,0.2); color: #34d399; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 700;">Confirmed</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ==================================================================== -->
-            <!-- SECTION 5: MY BOOKINGS (TOURIST VIEW) -->
-            <!-- ==================================================================== -->
-            <section id="my-bookings-section" class="app-section">
-                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
-                    <div>
-                        <h2 style="font-size: 22px; font-weight: 800; color: #ffffff;">My Active Bookings</h2>
-                        <p style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">Manage your confirmed expeditions, view downpayment receipts, and finalize installments.</p>
-                    </div>
-                </div>
-
-                <div class="card" style="padding: 20px;">
-                    <div class="table-responsive">
-                        <table class="data-table">
-                            <thead>
-                                <tr>
-                                    <th>Booking Reference</th>
-                                    <th>Expedition Package</th>
+                                    <th>Expedition Title</th>
                                     <th>Destination</th>
-                                    <th>Travel Date</th>
-                                    <th>Total Amount</th>
+                                    <th>Departure Date</th>
+                                    <th>Total Value</th>
                                     <th>Deposit Paid</th>
                                     <th>Status</th>
-                                    <th>Actions</th>
+                                    <th style="text-align: right;">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody id="user-bookings-table-body">
-                                <!-- Populated by script.js -->
+                            <tbody id="user-bookings-tbody">
+                                <!-- Populated dynamically -->
                             </tbody>
                         </table>
                     </div>
@@ -598,41 +517,63 @@
             </section>
 
             <!-- ==================================================================== -->
-            <!-- SECTION 6: INVENTORY & DISPATCH (ADMIN VIEW) -->
+            <!-- SECTION 5: ADMIN OPERATIONS & DISPATCH (ADMIN ONLY) -->
             <!-- ==================================================================== -->
-            <section id="inventory-section" class="app-section">
+            <section id="admin-section" class="app-section">
                 <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
                     <div>
-                        <h2 style="font-size: 22px; font-weight: 800; color: #ffffff;">Inventory &amp; Expedition Dispatch</h2>
-                        <p style="font-size: 13px; color: var(--text-secondary); margin-top: 4px;">Create, update, and manage catalogue availability across all 16 destination regions.</p>
+                        <h2 style="font-size: 22px; font-weight: 800; color: #ffffff;">Executive Inventory &amp; Dispatch Oversight</h2>
+                        <p style="font-size: 13px; color: var(--text-secondary); margin-top: 2px;">Deploy new tour packages, oversee partner hotel capacity, and monitor tourist registrations.</p>
                     </div>
-                    <div style="display: flex; gap: 10px;">
-                        <button class="btn btn-secondary" onclick="exportDataCSV('inventory')">
-                            <i class="fa-solid fa-file-csv"></i> Export Inventory
-                        </button>
-                        <button class="btn btn-primary" onclick="openAddPackageModal()">
-                            <i class="fa-solid fa-plus"></i> Add New Package
+                    <div style="display: flex; gap: 8px;">
+                        <button type="button" class="btn btn-primary" onclick="openModal('add-package-modal')">
+                            <i class="fa-solid fa-plus"></i> Deploy New Package
                         </button>
                     </div>
                 </div>
 
-                <div class="card" style="padding: 20px;">
+                <div class="card" style="padding: 0; overflow: hidden; border-radius: var(--radius-md); margin-bottom: 28px;">
+                    <div style="padding: 14px 20px; background: rgba(15, 23, 42, 0.8); border-bottom: 1px solid rgba(255,255,255,0.08); display: flex; justify-content: space-between; align-items: center;">
+                        <h3 style="font-size: 15px; font-weight: 700; color: #ffffff;"><i class="fa-solid fa-boxes-stacked" style="color: #ec4899;"></i> Active Catalog Inventory</h3>
+                        <span style="font-size: 12px; color: #94a3b8;">16 Packages Live</span>
+                    </div>
                     <div class="table-responsive">
-                        <table class="data-table">
+                        <table class="pro-data-table">
                             <thead>
                                 <tr>
-                                    <th>Package ID</th>
-                                    <th>Title</th>
+                                    <th>ID</th>
+                                    <th>Package Name</th>
                                     <th>Destination</th>
-                                    <th>Partner Hotel</th>
+                                    <th>Hotel Partner</th>
                                     <th>Price</th>
-                                    <th>Deposit (25%)</th>
+                                    <th>25% Deposit</th>
                                     <th>Available Date</th>
-                                    <th>Actions</th>
+                                    <th style="text-align: right;">Action</th>
                                 </tr>
                             </thead>
-                            <tbody id="inventory-table-body">
-                                <!-- Populated dynamically by script.js -->
+                            <tbody id="inventory-tbody">
+                                <!-- Populated dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card" style="padding: 0; overflow: hidden; border-radius: var(--radius-md);">
+                    <div style="padding: 14px 20px; background: rgba(15, 23, 42, 0.8); border-bottom: 1px solid rgba(255,255,255,0.08);">
+                        <h3 style="font-size: 15px; font-weight: 700; color: #ffffff;"><i class="fa-solid fa-users" style="color: #f59e0b;"></i> Registered Tourist Directory</h3>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="pro-data-table">
+                            <thead>
+                                <tr>
+                                    <th>Tourist Email</th>
+                                    <th>Member Since</th>
+                                    <th>Total Bookings</th>
+                                    <th>VIP Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tourists-tbody">
+                                <!-- Populated dynamically -->
                             </tbody>
                         </table>
                     </div>
@@ -642,10 +583,10 @@
     </div>
 
     <!-- ==================================================================== -->
-    <!-- MODALS: BOOKING, ADD PACKAGE, NOTIFICATIONS, AUTH, PWA -->
+    <!-- MODALS: BOOKING, DETAILS & REVIEWS, E-TICKET, ADD PACKAGE, NOTIFS -->
     <!-- ==================================================================== -->
 
-    <!-- Luxury Booking Modal -->
+    <!-- Luxury Booking Modal (with 25% instant downpayment) -->
     <div id="booking-modal" class="modal-overlay">
         <div class="modal-card">
             <div class="modal-header">
@@ -657,7 +598,7 @@
                     <h4 id="booking-pkg-name" style="font-size: 15px; color: #ffffff; margin-bottom: 4px;">Destination Package</h4>
                     <p id="booking-pkg-dest" style="font-size: 12px; color: #94a3b8; margin-bottom: 8px;"><i class="fa-solid fa-location-dot"></i> Location</p>
                     <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span style="font-size: 12px; color: #94a3b8;">Full Price: <strong id="booking-pkg-price" style="color: #ffffff;">$0</strong></span>
+                        <span style="font-size: 12px; color: #94a3b8;">Total Price: <strong id="booking-pkg-price" style="color: #ffffff;">$0</strong></span>
                         <span style="font-size: 12px; color: #34d399;">Required 25% Deposit: <strong id="booking-pkg-deposit" style="font-weight: 800;">$0</strong></span>
                     </div>
                 </div>
@@ -688,18 +629,25 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="booking-payment-method">Payment Instrument</label>
+                        <select id="booking-payment-method" class="form-control">
+                            <option value="card">Executive Visa / Mastercard VIP (Instant Approval)</option>
+                            <option value="netbanking">Direct Wire Transfer / Net Banking</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
                         <label for="booking-notes">Special Requests &amp; Dietary Preferences</label>
-                        <textarea id="booking-notes" class="form-control" rows="2" placeholder="e.g. Vegetarian meals, high-floor suite, airport pickup..."></textarea>
+                        <textarea id="booking-notes" class="form-control" rows="2" placeholder="e.g. High-floor villa, ocean view, airport pickup..."></textarea>
                     </div>
 
-                    <!-- Payment Method Toggle -->
+                    <!-- 25% Downpayment Guarantee Box -->
                     <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 8px; padding: 12px; margin-bottom: 16px;">
                         <div style="display: flex; align-items: center; justify-content: space-between;">
                             <div>
                                 <strong style="font-size: 13px; color: #34d399;"><i class="fa-solid fa-shield-halved"></i> 25% Instant Downpayment</strong>
-                                <p style="font-size: 11px; color: #94a3b8; margin: 2px 0 0 0;">Pay only 25% today to lock in your flight and villa reservation.</p>
+                                <p style="font-size: 11px; color: #94a3b8; margin: 2px 0 0 0;">Pay only 25% today to lock in flight and luxury villa booking.</p>
                             </div>
-                            <span id="booking-live-downpayment" style="font-size: 16px; font-weight: 800; color: #ffffff;">$250</span>
+                            <span id="booking-live-downpayment" style="font-size: 16px; font-weight: 800; color: #ffffff;">$0</span>
                         </div>
                     </div>
 
@@ -710,6 +658,168 @@
                         </button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Luxury Package Details & Reviews Modal -->
+    <div id="details-modal" class="modal-overlay">
+        <div class="modal-card modal-lg">
+            <div class="modal-header">
+                <h3><i class="fa-solid fa-circle-info" style="color: #38bdf8;"></i> <span id="details-modal-title">Expedition Details</span></h3>
+                <button type="button" class="close-btn" onclick="closeModal('details-modal')">&times;</button>
+            </div>
+            <div class="modal-body" style="max-height: 80vh; overflow-y: auto;">
+                <!-- Hero Photo Banner with Overlay -->
+                <div class="details-hero-img" id="details-hero-frame">
+                    <div class="details-hero-overlay">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+                            <div>
+                                <span id="details-category-tag" class="inclusion-tag" style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border-color: rgba(56, 189, 248, 0.4);">Category</span>
+                                <h2 id="details-name" style="font-size: 22px; font-weight: 800; color: #fff; margin-top: 4px;">Package Name</h2>
+                                <p id="details-dest" style="color: #cbd5e1; font-size: 13px; margin: 2px 0 0 0;"><i class="fa-solid fa-location-dot" style="color: #38bdf8;"></i> Destination</p>
+                            </div>
+                            <div style="text-align: right;">
+                                <div id="details-price" style="font-size: 22px; font-weight: 800; color: #34d399;">$0</div>
+                                <span id="details-deposit" style="font-size: 11px; color: #94a3b8;">Deposit: $0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Description & Hotel Overview -->
+                <p id="details-desc" style="font-size: 14px; color: #e2e8f0; line-height: 1.6; margin-bottom: 16px;"></p>
+                <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 12px 16px; margin-bottom: 16px;">
+                    <strong style="color: #ffffff; font-size: 13px;"><i class="fa-solid fa-hotel" style="color: #f59e0b;"></i> Luxury Partner Hotel:</strong>
+                    <span id="details-hotel" style="color: #38bdf8; font-weight: 600; margin-left: 6px;">Selected Resort</span>
+                    <span id="details-duration" style="float: right; color: #a78bfa; font-weight: 600; font-size: 12px;"><i class="fa-solid fa-clock"></i> 5 Days</span>
+                </div>
+
+                <!-- Live Climate & Weather Widget -->
+                <div class="details-weather-card">
+                    <div class="weather-stat-item">
+                        <strong id="weather-temp">--°C</strong>
+                        <span>Average Temp</span>
+                    </div>
+                    <div class="weather-stat-item">
+                        <strong id="weather-season">Optimal</strong>
+                        <span>Best Travel Season</span>
+                    </div>
+                    <div class="weather-stat-item">
+                        <strong id="weather-currency">Local Currency</strong>
+                        <span>Currency</span>
+                    </div>
+                    <div class="weather-stat-item" style="grid-column: 1/-1;">
+                        <span style="color: #94a3b8; font-size: 11px;">Packing &amp; Travel Tip:</span>
+                        <div id="weather-tips" style="color: #cbd5e1; font-size: 12px; margin-top: 2px;">Comfortable attire recommended.</div>
+                    </div>
+                </div>
+
+                <!-- Key Inclusions -->
+                <h4 style="font-size: 13px; font-weight: 700; color: #ffffff; text-transform: uppercase; margin-bottom: 8px;">Included Highlights &amp; Amenities:</h4>
+                <div class="inclusions-tag-list" id="details-inclusions">
+                    <!-- Populated dynamically -->
+                </div>
+
+                <!-- Traveler Reviews & Experiences -->
+                <div class="reviews-section">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                        <h4 style="font-size: 14px; font-weight: 700; color: #ffffff;"><i class="fa-solid fa-star" style="color: #f59e0b;"></i> Verified Traveler Reviews (<span id="reviews-count">0</span>)</h4>
+                        <span id="reviews-avg-rating" style="color: #f59e0b; font-weight: 800; font-size: 14px;">★ 4.9 / 5.0</span>
+                    </div>
+                    <div class="reviews-container" id="reviews-container">
+                        <!-- Populated dynamically -->
+                    </div>
+
+                    <!-- Write a Review Form -->
+                    <div style="background: rgba(11, 15, 25, 0.7); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 14px; margin-top: 14px;">
+                        <h5 style="font-size: 13px; font-weight: 700; color: #ffffff; margin-bottom: 6px;">Share Your Experience</h5>
+                        <form id="submit-review-form" onsubmit="handleReviewSubmit(event)">
+                            <input type="hidden" id="review-pkg-id">
+                            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+                                <label style="font-size: 12px; color: #94a3b8;">Your Star Rating:</label>
+                                <div class="star-rating-selector" id="star-rating-bar">
+                                    <button type="button" class="star-rate-btn active" data-val="1" onclick="setReviewRating(1)">★</button>
+                                    <button type="button" class="star-rate-btn active" data-val="2" onclick="setReviewRating(2)">★</button>
+                                    <button type="button" class="star-rate-btn active" data-val="3" onclick="setReviewRating(3)">★</button>
+                                    <button type="button" class="star-rate-btn active" data-val="4" onclick="setReviewRating(4)">★</button>
+                                    <button type="button" class="star-rate-btn active" data-val="5" onclick="setReviewRating(5)">★</button>
+                                </div>
+                                <input type="hidden" id="review-rating-val" value="5">
+                            </div>
+                            <div class="form-group" style="margin-bottom: 8px;">
+                                <textarea id="review-comment" class="form-control" rows="2" placeholder="Tell other travelers about guides, villa views, and culinary experiences..." required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-secondary" style="font-size: 12px; padding: 6px 14px; width: 100%;">
+                                <i class="fa-solid fa-paper-plane"></i> Submit Verified Review
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Footer Action -->
+                <div style="display: flex; gap: 10px; margin-top: 20px;">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('details-modal')" style="flex: 1;">Close</button>
+                    <button type="button" class="btn btn-primary" id="details-book-btn" style="flex: 2;">
+                        <i class="fa-solid fa-compass"></i> Book This Expedition Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Printable E-Ticket Voucher Modal -->
+    <div id="ticket-modal" class="modal-overlay">
+        <div class="modal-card modal-lg" style="background: transparent; box-shadow: none; border: none;">
+            <div class="printable-ticket-card" id="printable-ticket-body">
+                <div class="printable-ticket-header">
+                    <div>
+                        <div class="ticket-brand"><i class="fa-solid fa-plane-departure"></i> TourManager Pro</div>
+                        <span style="font-size: 11px; color: #64748b;">Official Executive Travel Voucher &amp; Itinerary Pass</span>
+                    </div>
+                    <div class="ticket-status-badge">
+                        <i class="fa-solid fa-circle-check"></i> Confirmed Pass
+                    </div>
+                </div>
+
+                <div class="ticket-grid">
+                    <div class="ticket-field">
+                        <label>Booking Reference</label>
+                        <value id="ticket-booking-id">BK-9081</value>
+                    </div>
+                    <div class="ticket-field">
+                        <label>Traveler Name / Account</label>
+                        <value id="ticket-traveler">traveler@executive.io</value>
+                    </div>
+                    <div class="ticket-field">
+                        <label>Destination &amp; Tour</label>
+                        <value id="ticket-package">Alpine Winter Express</value>
+                    </div>
+                    <div class="ticket-field">
+                        <label>Departure Date</label>
+                        <value id="ticket-date">2026-11-20</value>
+                    </div>
+                    <div class="ticket-field">
+                        <label>Hotel Partner</label>
+                        <value id="ticket-hotel">Grand Swiss Resort</value>
+                    </div>
+                    <div class="ticket-field">
+                        <label>Amount Reserved</label>
+                        <value id="ticket-amount">$487.00 (Deposit Cleared)</value>
+                    </div>
+                </div>
+
+                <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; margin-bottom: 16px; font-size: 12px; color: #475569;">
+                    <i class="fa-solid fa-qrcode" style="font-size: 28px; float: right; color: #0f172a;"></i>
+                    <strong>Check-in Instructions:</strong> Please present this official electronic voucher upon hotel arrival or airport executive pickup. 24/7 Concierge Hotline: +1 (800) 555-TOUR.
+                </div>
+
+                <div class="no-print" style="display: flex; justify-content: flex-end; gap: 10px;">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('ticket-modal')">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="window.print()">
+                        <i class="fa-solid fa-print"></i> Print / Save PDF Voucher
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -789,22 +899,66 @@
         </div>
     </div>
 
-    <!-- PWA Install Modal -->
-    <div id="pwa-install-modal" class="modal-overlay">
-        <div class="modal-card">
-            <div class="modal-header">
-                <h3><i class="fa-solid fa-laptop" style="color: var(--accent-blue);"></i> Install TourManager Pro</h3>
-                <button type="button" class="close-btn" onclick="closeModal('pwa-install-modal')">&times;</button>
+    <!-- Floating Pro Comparison Dock -->
+    <div id="pro-compare-dock" class="pro-compare-dock hidden">
+        <div class="pro-compare-dock-inner">
+            <div class="pro-compare-dock-info">
+                <span class="pro-compare-icon"><i class="fa-solid fa-code-compare"></i></span>
+                <span id="pro-compare-count-text">0 expeditions selected for comparison (max 3)</span>
             </div>
-            <div class="modal-body">
-                <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 16px;">TourManager Pro runs as a Progressive Web App (PWA) with full offline caching and desktop launcher capabilities.</p>
-                <div style="display: flex; flex-direction: column; gap: 10px;">
-                    <a href="/" target="_blank" class="btn btn-primary" style="text-align: center; justify-content: center; text-decoration: none;">
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Open in New Browser Tab to Install
-                    </a>
-                    <a href="/download-app" download="TourManager-Desktop-App.zip" class="btn btn-secondary" style="text-align: center; justify-content: center; text-decoration: none;">
-                        <i class="fa-solid fa-download"></i> Download Standalone Package (.zip)
-                    </a>
+            <div class="pro-compare-dock-actions">
+                <button type="button" id="pro-open-compare-btn" class="btn btn-primary" onclick="openProCompareModal()">
+                    <i class="fa-solid fa-table-columns"></i> Compare Now
+                </button>
+                <button type="button" class="btn btn-secondary" onclick="clearProCompareList()">Clear</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Executive Side-by-Side Comparison Modal -->
+    <div id="pro-compare-modal" class="modal-overlay">
+        <div class="modal-card modal-xl" style="max-width: 1040px; width: 95%;">
+            <div class="modal-header">
+                <div>
+                    <h3 style="font-size: 18px; color: #ffffff;"><i class="fa-solid fa-code-compare" style="color: #38bdf8;"></i> Side-by-Side Expedition Comparison</h3>
+                    <p style="font-size: 12px; color: #94a3b8; margin-top: 2px;">Evaluate pricing, luxury accommodations, durations, and guest ratings</p>
+                </div>
+                <div style="display: flex; gap: 8px; align-items: center;">
+                    <button type="button" class="btn btn-secondary btn-sm" onclick="clearProCompareList()">Clear All</button>
+                    <button type="button" class="close-btn" onclick="closeModal('pro-compare-modal')">&times;</button>
+                </div>
+            </div>
+            <div class="modal-body" style="padding: 20px 24px; max-height: 80vh; overflow-y: auto;">
+                <div id="pro-compare-grid-container" class="pro-compare-grid-container">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Weather & Seasonality Modal -->
+    <div id="pro-weather-modal" class="modal-overlay">
+        <div class="modal-card" style="max-width: 520px; width: 92%;">
+            <div class="modal-header">
+                <h3 id="pro-weather-title" style="font-size: 16px; color: #ffffff;"><i class="fa-solid fa-cloud-sun" style="color: #38bdf8;"></i> Destination Weather &amp; Tips</h3>
+                <button type="button" class="close-btn" onclick="closeModal('pro-weather-modal')">&times;</button>
+            </div>
+            <div class="modal-body" id="pro-weather-body" style="padding: 20px 24px;">
+                <!-- Populated dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Verified Reviews Modal in Pro -->
+    <div id="pro-reviews-modal" class="modal-overlay">
+        <div class="modal-card" style="max-width: 620px; width: 92%;">
+            <div class="modal-header">
+                <h3 id="pro-reviews-title" style="font-size: 16px; color: #ffffff;"><i class="fa-solid fa-star" style="color: #f59e0b;"></i> Verified Traveler Experiences</h3>
+                <button type="button" class="close-btn" onclick="closeModal('pro-reviews-modal')">&times;</button>
+            </div>
+            <div class="modal-body" style="padding: 20px 24px;">
+                <div id="pro-reviews-body">
+                    <!-- Populated dynamically -->
                 </div>
             </div>
         </div>

@@ -38,7 +38,12 @@
                 <li><a href="#" id="nav-ai-btn" style="color:#0f766e;font-weight:600;"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Assistant</a></li>
                 <li id="nav-login"><a href="#" data-view="login-view">Login</a></li>
                 <li id="nav-register"><a href="#" data-view="register-view">Register</a></li>
-                <li><a href="/index.html" style="color:#0f766e;font-weight:600;">✨ Pro Dashboard</a></li>
+                <li class="portal-switch-nav-item">
+                    <a href="/pro" class="portal-switch-badge" style="background: linear-gradient(135deg, #0f172a, #1e293b); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.45); padding: 5px 12px; border-radius: 20px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 0 12px rgba(56, 189, 248, 0.2); font-size: 0.85rem;" title="Switch to Pro Executive Dashboard">
+                        <span style="width: 7px; height: 7px; border-radius: 50%; background: #38bdf8; box-shadow: 0 0 8px #38bdf8; display: inline-block;"></span>
+                        <span>✨ Pro Executive</span>
+                    </a>
+                </li>
                 <li class="currency-nav-item">
                     <select id="currency-select" class="currency-select" title="Change currency">
                         <option value="USD">USD ($)</option>
@@ -82,6 +87,37 @@
 
         <!-- Home / Search View -->
         <section id="home-view" class="view active">
+            <!-- Classic Portal Majestic Hero Showcase -->
+            <div class="classic-hero-showcase">
+                <div class="classic-hero-overlay"></div>
+                <div class="classic-hero-content">
+                    <div class="classic-hero-badge-row">
+                        <span class="classic-hero-pill"><span class="pulse-dot"></span> 22 Premier Global Destinations</span>
+                        <a href="/pro" class="classic-hero-pro-cta"><i class="fa-solid fa-cube"></i> Open 3D Pro Executive &rarr;</a>
+                    </div>
+                    <h1 class="classic-hero-title">Discover the World's Most Inspiring Journeys</h1>
+                    <p class="classic-hero-subtitle">Hand-crafted expeditions, 5★ boutique hotels, flexible 25% downpayment reservations, and 24/7 intelligent travel concierge assistance.</p>
+                    <div class="classic-hero-stats-deck">
+                        <div class="classic-stat-card">
+                            <span class="classic-stat-num">22</span>
+                            <span class="classic-stat-label">Destinations</span>
+                        </div>
+                        <div class="classic-stat-card">
+                            <span class="classic-stat-num">4.95★</span>
+                            <span class="classic-stat-label">Verified Rating</span>
+                        </div>
+                        <div class="classic-stat-card">
+                            <span class="classic-stat-num">25%</span>
+                            <span class="classic-stat-label">Deposit Option</span>
+                        </div>
+                        <div class="classic-stat-card">
+                            <span class="classic-stat-num">Instant</span>
+                            <span class="classic-stat-label">E-Ticket Voucher</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- AI Travel Concierge Assistance Box -->
             <div class="ai-hero-box card" id="ai-home-box">
                 <div class="ai-hero-header">
@@ -106,7 +142,7 @@
 
             <div class="section-heading-row">
                 <h2>Explore Curated World Destinations</h2>
-                <span class="destinations-count-pill" id="destinations-count-badge">16 Active Destinations</span>
+                <span class="destinations-count-pill" id="destinations-count-badge">22 Active Destinations</span>
             </div>
 
             <!-- Category Theme Filter Chips -->
@@ -125,10 +161,16 @@
                 <button type="button" class="dest-chip" data-dest="Santorini">🇬🇷 Santorini</button>
                 <button type="button" class="dest-chip" data-dest="Kyoto">🇯🇵 Kyoto</button>
                 <button type="button" class="dest-chip" data-dest="Bali">🇮🇩 Bali</button>
+                <button type="button" class="dest-chip" data-dest="Machu Picchu">🇵🇪 Machu Picchu</button>
+                <button type="button" class="dest-chip" data-dest="Bora Bora">🇵🇫 Bora Bora</button>
+                <button type="button" class="dest-chip" data-dest="Agra">🇮🇳 Agra &amp; Taj Mahal</button>
                 <button type="button" class="dest-chip" data-dest="Barcelona">🇪🇸 Barcelona</button>
                 <button type="button" class="dest-chip" data-dest="New York">🇺🇸 New York</button>
                 <button type="button" class="dest-chip" data-dest="Cairo">🇪🇬 Cairo</button>
                 <button type="button" class="dest-chip" data-dest="Reykjavik">🇮🇸 Iceland</button>
+                <button type="button" class="dest-chip" data-dest="Banff">🇨🇦 Banff &amp; Rockies</button>
+                <button type="button" class="dest-chip" data-dest="Sydney">🇦🇺 Sydney</button>
+                <button type="button" class="dest-chip" data-dest="Serengeti">🇹🇿 Serengeti</button>
                 <button type="button" class="dest-chip" data-dest="Cape Town">🇿🇦 Cape Town</button>
                 <button type="button" class="dest-chip" data-dest="Paris">🇫🇷 Paris</button>
                 <button type="button" class="dest-chip" data-dest="Tokyo">🇯🇵 Tokyo</button>
@@ -200,7 +242,7 @@
                         <span class="ai-badge"><i class="fa-solid fa-wand-magic-sparkles"></i> AI Search Results</span>
                         <span id="ai-banner-count" class="ai-match-count">0 tours matched</span>
                     </div>
-                    <button type="button" id="ai-clear-search-btn" class="btn btn-secondary btn-sm"><i class="fa-solid fa-xmark"></i> Show All 16 Tours</button>
+                    <button type="button" id="ai-clear-search-btn" class="btn btn-secondary btn-sm"><i class="fa-solid fa-xmark"></i> Show All 22 Tours</button>
                 </div>
                 <p id="ai-banner-summary" class="ai-banner-summary-text"></p>
                 <div id="ai-banner-tags" class="ai-banner-tags"></div>
@@ -214,7 +256,7 @@
                 <div class="ai-empty-suggestions">
                     <p>Try searching with broader terms or choose one of our suggested styles:</p>
                     <div class="ai-prompt-chips">
-                        <button type="button" class="ai-chip" id="ai-empty-reset-btn">View All 16 Destinations</button>
+                        <button type="button" class="ai-chip" id="ai-empty-reset-btn">View All 22 Destinations</button>
                         <button type="button" class="ai-chip" onclick="triggerAISearchPrompt('Affordable beach tours under $1500')">🏖️ Beach under $1,500</button>
                         <button type="button" class="ai-chip" onclick="triggerAISearchPrompt('Cultural heritage tours')">🏛️ Cultural Tours</button>
                     </div>

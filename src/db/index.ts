@@ -168,7 +168,13 @@ function seedInitialData() {
     { name: "The Plaza Hotel", location: "New York, USA", description: "Legendary Fifth Avenue luxury adjacent to Central Park." },
     { name: "Marriott Mena House", location: "Cairo, Egypt", description: "Historic palace hotel overlooking the Great Pyramids of Giza." },
     { name: "The Retreat at Blue Lagoon", location: "Reykjavik, Iceland", description: "Geothermal sanctuary surrounded by volcanic landscapes." },
-    { name: "The Silo Hotel", location: "Cape Town, South Africa", description: "Architectural marvel towering above the V&A Waterfront." }
+    { name: "The Silo Hotel", location: "Cape Town, South Africa", description: "Architectural marvel towering above the V&A Waterfront." },
+    { name: "Belmond Sanctuary Lodge", location: "Cusco & Machu Picchu, Peru", description: "Legendary luxury lodge situated directly adjacent to the Inca citadel." },
+    { name: "The St. Regis Bora Bora Resort", location: "Bora Bora, French Polynesia", description: "World-renowned overwater villa haven with panoramic Mount Otemanu vistas." },
+    { name: "The Oberoi Amarvilas", location: "Agra, India", description: "Palatial retreat offering uninterrupted private balcony views of the iconic Taj Mahal." },
+    { name: "Fairmont Chateau Lake Louise", location: "Banff & Lake Louise, Canada", description: "Historic mountain sanctuary nestled against shimmering turquoise glacial waters." },
+    { name: "Park Hyatt Sydney", location: "Sydney, Australia", description: "Premier waterfront suites offering front-row views of Sydney Opera House and Harbour." },
+    { name: "Four Seasons Safari Lodge Serengeti", location: "Serengeti, Tanzania", description: "Deep-bush luxury lodge with active watering hole and Great Migration safaris." }
   ];
 
   for (const h of hotelList) {
@@ -326,6 +332,60 @@ function seedInitialData() {
       available_date: "2026-11-28",
       image_url: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&w=900&q=80",
       description: "Table Mountain cableway, Cape Peninsula scenic drive, Boulders Beach penguins, and winery tour.",
+    },
+    {
+      name: "Inca Trail & Machu Picchu Sanctuary",
+      destination: "Machu Picchu, Peru",
+      hotel_id: 17,
+      price: 1750,
+      available_date: "2026-10-18",
+      image_url: "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&w=900&q=80",
+      description: "Private sunrise access to the ancient Inca citadel of Machu Picchu, Sacred Valley alpaca farm tour, luxury Vistadome observatory train, and historic Cusco colonial suite.",
+    },
+    {
+      name: "Bora Bora Overwater Lagoon Bliss",
+      destination: "Bora Bora, French Polynesia",
+      hotel_id: 18,
+      price: 2850,
+      available_date: "2026-11-12",
+      image_url: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80",
+      description: "Overwater villa stay with glass floor viewing panels, Mount Otemanu catamaran lagoon cruise, shark and stingray snorkeling safari, and Polynesian sunset dining.",
+    },
+    {
+      name: "Royal Palaces & Taj Mahal Odyssey",
+      destination: "Agra & Jaipur, India",
+      hotel_id: 19,
+      price: 1280,
+      available_date: "2026-11-22",
+      image_url: "https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=900&q=80",
+      description: "Private sunrise entry to the marble Taj Mahal, royal Jaipur Amber Fort heritage tour, Michelin-level Rajasthani dining, and luxury rooms with uninterrupted monument views.",
+    },
+    {
+      name: "Canadian Rockies & Glacial Lakes",
+      destination: "Banff, Canada",
+      hotel_id: 20,
+      price: 1620,
+      available_date: "2026-10-12",
+      image_url: "https://images.unsplash.com/photo-1503614472-8c93d56e92ce?auto=format&fit=crop&w=900&q=80",
+      description: "Glacial canoe excursion on turquoise Lake Louise, Columbia Icefield Ice Explorer trek, Banff gondola panoramic summit views, and thermal mineral hot springs.",
+    },
+    {
+      name: "Sydney Harbour & Great Barrier Reef",
+      destination: "Sydney, Australia",
+      hotel_id: 21,
+      price: 2100,
+      available_date: "2026-12-08",
+      image_url: "https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?auto=format&fit=crop&w=900&q=80",
+      description: "Sydney Opera House backstage access, harbour sailing dinner cruise, scenic reef helicopter flight, and outer barrier reef catamaran cruise.",
+    },
+    {
+      name: "Serengeti Great Migration Safari",
+      destination: "Serengeti, Tanzania",
+      hotel_id: 22,
+      price: 2650,
+      available_date: "2026-11-04",
+      image_url: "https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=900&q=80",
+      description: "Sunrise hot air balloon safari across the Serengeti plains, tracking the Big Five with expert Maasai guides, luxury bush dinner under the African stars, and Ngorongoro crater rim game drive.",
     }
   ];
 
@@ -354,7 +414,13 @@ function seedInitialData() {
     { package_id: 9, tourist_id: 4, tourist_name: "Elena Rostova", rating: 5, comment: "The sunset catamaran cruise in Santorini was the highlight of our European summer! 10/10.", created_at: "2026-09-01T18:30:00Z" },
     { package_id: 10, tourist_id: 4, tourist_name: "David Kim", rating: 5, comment: "Peaceful morning at the Arashiyama bamboo grove and an authentic tea ceremony in Kyoto.", created_at: "2026-08-19T08:15:00Z" },
     { package_id: 11, tourist_id: 4, tourist_name: "Jessica Taylor", rating: 5, comment: "Ubud jungle sanctuary and sacred water blessing provided the ultimate reset. Wonderful staff.", created_at: "2026-08-25T13:40:00Z" },
-    { package_id: 15, tourist_id: 4, tourist_name: "Freja Lind", rating: 5, comment: "Witnessed the Aurora Borealis from our private geothermal bath in Iceland. Unreal scenery!", created_at: "2026-08-30T22:10:00Z" }
+    { package_id: 15, tourist_id: 4, tourist_name: "Freja Lind", rating: 5, comment: "Witnessed the Aurora Borealis from our private geothermal bath in Iceland. Unreal scenery!", created_at: "2026-08-30T22:10:00Z" },
+    { package_id: 17, tourist_id: 4, tourist_name: "Mateo Alvarez", rating: 5, comment: "Machu Picchu at dawn before the crowds arrive was genuinely spiritual. Belmond lodge was worth every penny.", created_at: "2026-09-05T14:20:00Z" },
+    { package_id: 18, tourist_id: 4, tourist_name: "Isabella Fontaine", rating: 5, comment: "The overwater bungalow in Bora Bora is pure bliss. Watching manta rays glide beneath the glass floor was surreal.", created_at: "2026-09-08T10:15:00Z" },
+    { package_id: 19, tourist_id: 4, tourist_name: "Vikram Malhotra", rating: 5, comment: "Waking up to the sunrise over the Taj Mahal from our Oberoi balcony was unforgettable. Royal hospitality.", created_at: "2026-09-11T09:40:00Z" },
+    { package_id: 20, tourist_id: 4, tourist_name: "Heather Campbell", rating: 5, comment: "Canoeing on Lake Louise with snowcapped peaks mirrored in emerald water. The Fairmont was magnificent.", created_at: "2026-09-14T16:10:00Z" },
+    { package_id: 21, tourist_id: 4, tourist_name: "Julian Vance", rating: 5, comment: "Sydney harbour views from the suite were postcard-perfect, and the Great Barrier Reef flight was awe-inspiring.", created_at: "2026-09-16T11:25:00Z" },
+    { package_id: 22, tourist_id: 4, tourist_name: "Beatrice Thorne", rating: 5, comment: "Sunrise hot air balloon over the Serengeti watching thousands of wildebeest and lions. Absolute trip of a lifetime.", created_at: "2026-09-19T06:50:00Z" }
   ];
 
   for (const r of initialReviews) {
@@ -1036,16 +1102,16 @@ export function getPackageRatingSummary(packageId: number): { rating: number; co
 // Category and metadata helper for packages
 function getCategoryForDestination(dest: string): string {
   const lower = dest.toLowerCase();
-  if (lower.includes("maldives") || lower.includes("santorini") || lower.includes("amalfi") || lower.includes("bali")) {
+  if (lower.includes("maldives") || lower.includes("santorini") || lower.includes("amalfi") || lower.includes("bali") || lower.includes("bora bora")) {
     return "Beach & Islands";
   }
-  if (lower.includes("rome") || lower.includes("cairo") || lower.includes("barcelona") || lower.includes("kyoto")) {
+  if (lower.includes("rome") || lower.includes("cairo") || lower.includes("barcelona") || lower.includes("kyoto") || lower.includes("machu picchu") || lower.includes("peru") || lower.includes("agra") || lower.includes("india") || lower.includes("jaipur")) {
     return "Cultural & Heritage";
   }
-  if (lower.includes("switzerland") || lower.includes("iceland") || lower.includes("reykjavik")) {
+  if (lower.includes("switzerland") || lower.includes("iceland") || lower.includes("reykjavik") || lower.includes("banff") || lower.includes("rockies")) {
     return "Alpine & Winter";
   }
-  if (lower.includes("tokyo") || lower.includes("dubai") || lower.includes("singapore") || lower.includes("new york")) {
+  if (lower.includes("tokyo") || lower.includes("dubai") || lower.includes("singapore") || lower.includes("new york") || lower.includes("sydney")) {
     return "Modern Metropolises";
   }
   return "Nature & Wildlife";
@@ -1100,6 +1166,24 @@ function getWeatherInfoForDestination(dest: string): { temp: string; season: str
   }
   if (lower.includes("amalfi")) {
     return { temp: "24°C / 75°F", season: "Gentle Coastal Summer/Fall", tips: "Resort-casual wear, sunglasses, boat shoes.", currency: "EUR (€)" };
+  }
+  if (lower.includes("machu picchu") || lower.includes("peru") || lower.includes("cusco")) {
+    return { temp: "20°C / 68°F", season: "Dry Mountain Season", tips: "Sturdy hiking boots, sun protection, light layers for mountain altitude.", currency: "PEN (S/.) / USD ($)" };
+  }
+  if (lower.includes("bora bora")) {
+    return { temp: "29°C / 84°F", season: "Balmy Tropical Breeze", tips: "Reef-safe sunscreen, snorkeling mask, light linen apparel.", currency: "XPF (₣) / USD ($)" };
+  }
+  if (lower.includes("agra") || lower.includes("india") || lower.includes("jaipur")) {
+    return { temp: "26°C / 78°F", season: "Golden Autumn Sunshine", tips: "Modest breathable cotton clothing, comfortable slip-on shoes for palaces.", currency: "INR (₹)" };
+  }
+  if (lower.includes("banff") || lower.includes("canada") || lower.includes("rockies")) {
+    return { temp: "12°C / 54°F", season: "Crisp Glacial Autumn", tips: "Layered fleece jackets, polarized sunglasses for glacial reflections, trekking shoes.", currency: "CAD (C$)" };
+  }
+  if (lower.includes("sydney") || lower.includes("australia")) {
+    return { temp: "26°C / 79°F", season: "Sunny Harbour Summer", tips: "UV sunglasses, beach attire, smart casual dinner wear for Opera House.", currency: "AUD (A$)" };
+  }
+  if (lower.includes("serengeti") || lower.includes("tanzania")) {
+    return { temp: "28°C / 82°F", season: "Optimal Safari Season", tips: "Neutral-toned cotton clothing, binoculars, telephoto camera lens, wide hat.", currency: "USD ($) / TZS" };
   }
   return { temp: "24°C / 75°F", season: "Favorable Travel Season", tips: "Comfortable travel attire and standard daypack.", currency: "USD ($)" };
 }

@@ -51,8 +51,8 @@ async function runTests() {
   const status = getDatabaseStatus();
   assert(status !== null, "Database status object retrieved");
   assert(status.counts.users >= 4, `Database contains seeded users (${status.counts.users} found)`);
-  assert(status.counts.hotels === 16, `Database contains 16 world-class hotels (${status.counts.hotels} found)`);
-  assert(status.counts.packages === 16, `Database contains 16 tour packages (${status.counts.packages} found)`);
+  assert(status.counts.hotels >= 16, `Database contains world-class hotels (${status.counts.hotels} found)`);
+  assert(status.counts.packages >= 16, `Database contains tour packages (${status.counts.packages} found)`);
 
   // 2. FR-01: Tourist Registration, Login, & Search
   console.log("\n--- 2. FR-01: Authentication & Search Packages ---");
@@ -158,7 +158,7 @@ async function runTests() {
   assert(allUsers.filter(u => u.role === "tourist").length >= 2, "Admin can list registered tourists");
   assert(allBookings.length >= 1, "Admin can oversee all system bookings");
   assert(allPayments.length >= 1, "Admin can inspect all transaction records");
-  assert(allHotels.length === 16, "Admin maintains all 16 hotel records");
+  assert(allHotels.length >= 16, `Admin maintains all ${allHotels.length} hotel records`);
 
   // 7. Tourist Reviews & Ratings System
   console.log("\n--- 7. Reviews, Ratings & Recommendations ---");

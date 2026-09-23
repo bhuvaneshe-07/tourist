@@ -148,11 +148,11 @@ export function semanticSearchFallback(
 
     // Theme & style match
     if (styleCategory) {
-      const isBeach = ["maldives", "santorini", "amalfi", "bali"].some(d => pkgDestLower.includes(d));
-      const isCulture = ["rome", "cairo", "barcelona", "kyoto"].some(d => pkgDestLower.includes(d));
-      const isWinter = ["switzerland", "iceland", "reykjavik"].some(d => pkgDestLower.includes(d));
-      const isCity = ["tokyo", "dubai", "singapore", "new york"].some(d => pkgDestLower.includes(d));
-      const isNature = ["cape town", "bali", "switzerland"].some(d => pkgDestLower.includes(d));
+      const isBeach = ["maldives", "santorini", "amalfi", "bali", "bora bora"].some(d => pkgDestLower.includes(d));
+      const isCulture = ["rome", "cairo", "barcelona", "kyoto", "machu picchu", "peru", "agra", "india", "jaipur"].some(d => pkgDestLower.includes(d));
+      const isWinter = ["switzerland", "iceland", "reykjavik", "banff", "rockies"].some(d => pkgDestLower.includes(d));
+      const isCity = ["tokyo", "dubai", "singapore", "new york", "sydney"].some(d => pkgDestLower.includes(d));
+      const isNature = ["cape town", "bali", "switzerland", "serengeti", "tanzania", "banff", "machu picchu"].some(d => pkgDestLower.includes(d));
 
       if (
         (styleCategory === "Beach & Islands" && isBeach) ||
@@ -167,7 +167,7 @@ export function semanticSearchFallback(
     }
 
     if (theme === "Romantic Honeymoon Escapes") {
-      if (["santorini", "paris", "maldives", "amalfi"].some(d => pkgDestLower.includes(d))) {
+      if (["santorini", "paris", "maldives", "amalfi", "bora bora"].some(d => pkgDestLower.includes(d))) {
         score += 4;
         reasons.push("renowned romantic destination with scenic ocean/city vistas");
       }
