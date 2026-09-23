@@ -2,8 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
     <title>Tourist Management System</title>
+    <meta name="description" content="Next-generation travel platform featuring curated global destinations, tour booking, simulated payments, and an intelligent AI Travel Assistant.">
+    <meta property="og:title" content="Tourist Management System">
+    <meta property="og:description" content="Next-generation travel platform featuring curated global destinations, tour booking, simulated payments, and an intelligent AI Travel Assistant.">
+    <meta name="theme-color" content="#0f766e">
+    
+    <!-- PWA & Mobile Web App Capabilities -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="TourManager">
+    <meta name="application-name" content="TourManager">
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- Web App Manifest & App Icons -->
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+    <link rel="icon" type="image/svg+xml" href="/icon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
+    <!-- Stylesheets & Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/static/style.css">
 </head>
@@ -29,10 +49,33 @@
                         <option value="AUD">AUD (A$)</option>
                     </select>
                 </li>
+                <!-- Open in Full Tab Button (shown when embedded in preview) -->
+                <li id="nav-open-tab" class="hidden">
+                    <a href="/" target="_blank" rel="noopener noreferrer" class="btn-nav-tab" title="Open in dedicated browser tab to install">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Tab
+                    </a>
+                </li>
+                <!-- Direct Download Desktop App Button -->
+                <li id="nav-download-app">
+                    <a href="/download-app" download="TourManager-Desktop-App.zip" class="btn-nav-tab" style="color:#0f766e;border-color:#0f766e;" title="Download desktop package for Windows / Mac">
+                        <i class="fa-solid fa-cloud-arrow-down"></i> Download App
+                    </a>
+                </li>
+                <!-- PWA Install Button -->
+                <li id="nav-pwa-install">
+                    <button type="button" id="pwa-install-btn" class="btn-pwa-install" title="Install TourManager on your device">
+                        <i class="fa-solid fa-download"></i> Install App
+                    </button>
+                </li>
                 <li id="nav-logout" class="hidden"><a href="#" id="logout-btn">Logout</a></li>
             </ul>
         </nav>
     </header>
+
+    <!-- Offline Status Badge -->
+    <div id="pwa-offline-indicator" class="pwa-offline-badge hidden">
+        <i class="fa-solid fa-wifi"></i> Offline Mode &mdash; Using Cached Data
+    </div>
 
     <main class="container">
         <div id="alert-container"></div>
@@ -575,6 +618,30 @@
                     <i class="fa-solid fa-paper-plane"></i>
                 </button>
             </form>
+        </div>
+    </div>
+
+    <!-- Universal PWA Install Modal Guide for Laptops, Desktops, & Mobile -->
+    <div id="pwa-install-modal" class="pwa-ios-modal-overlay hidden">
+        <div class="pwa-ios-modal-card">
+            <div class="pwa-ios-icon-header">
+                <img src="/apple-touch-icon.png" alt="TourManager Logo">
+            </div>
+            <h3 id="pwa-modal-title">Install TourManager</h3>
+            <p id="pwa-modal-desc">Install TourManager on your laptop or mobile device for quick desktop access, offline catalogs, and a native app experience.</p>
+            
+            <div id="pwa-modal-content">
+                <!-- Dynamically populated based on device and browser -->
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:0.6rem;margin-top:1.25rem;">
+                <a href="/" target="_blank" rel="noopener noreferrer" id="pwa-modal-action-link" class="btn btn-primary hidden" style="width:100%;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;">Launch in New Tab</a>
+                <button type="button" id="pwa-modal-action-btn" class="btn btn-primary" style="width:100%;">Install Now</button>
+                <a href="/download-app" download="TourManager-Desktop-App.zip" id="pwa-modal-download-btn" class="btn" style="width:100%;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:0.5rem;background:#f1f5f9;color:#0f766e;border:1px solid #cbd5e1;font-weight:600;padding:0.65rem;">
+                    <i class="fa-solid fa-file-zipper"></i> Download Desktop App (.zip)
+                </a>
+                <button type="button" id="pwa-modal-close-btn" class="btn btn-secondary" style="width:100%;">Close</button>
+            </div>
         </div>
     </div>
 

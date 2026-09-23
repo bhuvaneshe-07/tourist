@@ -23,8 +23,8 @@ import {
   getAllReviews,
   createReview,
   getPackageRatingSummary,
-} from "../src/db/index.js";
-import { searchPackagesWithAI } from "../src/ai/search.js";
+} from "../src/db/index.ts";
+import { searchPackagesWithAI } from "../src/ai/search.ts";
 import bcrypt from "bcryptjs";
 
 let passedCount = 0;
@@ -224,6 +224,8 @@ async function runTests() {
 
   if (failedCount > 0) {
     process.exit(1);
+  } else {
+    process.exit(0);
   }
 }
 

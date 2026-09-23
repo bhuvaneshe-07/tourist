@@ -1,4 +1,4 @@
-import { initSupabase, getDatabaseStatus, getAllUsers, getAllHotels, getAllPackages, getAllBookings, getAllPayments, getAllNotifications } from "../src/db/index.js";
+import { initSupabase, getDatabaseStatus, getAllUsers, getAllHotels, getAllPackages, getAllBookings, getAllPayments, getAllNotifications } from "../src/db/index.ts";
 
 async function runMigration() {
   console.log("=================================================");

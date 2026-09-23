@@ -1,4 +1,5 @@
-import express, { Request, Response, NextFunction } from "express";
+import express from "express";
+import type { Request, Response, NextFunction } from "express";
 import cors from "cors";
 import path from "path";
 import jwt from "jsonwebtoken";
@@ -7,12 +8,6 @@ import { GoogleGenAI } from "@google/genai";
 import {
   initSupabase,
   getDatabaseStatus,
-  User,
-  Hotel,
-  Package,
-  Booking,
-  Payment,
-  Notification,
   getAllUsers,
   findUserByEmail,
   findUserById,
@@ -41,12 +36,20 @@ import {
   formatBookingOut,
   getAllReviews,
   createReview,
-} from "./src/db/index.js";
-import { searchPackagesWithAI } from "./src/ai/search.js";
+} from "./src/db/index.ts";
+import type {
+  User,
+  Hotel,
+  Package,
+  Booking,
+  Payment,
+  Notification,
+} from "./src/db/index.ts";
+import { searchPackagesWithAI } from "./src/ai/search.ts";
 
 const __dirname = process.cwd();
 
-const PORT = 3000;
+const PORT = Number(process.env.PORT) || 3000;
 const SECRET_KEY = process.env.JWT_SECRET || "tourmanager-local-dev-key-change-if-needed";
 
 let genAIClient: GoogleGenAI | null = null;
@@ -363,12 +366,11 @@ app.post("/api/bookings", requireTourist, async (req: AuthRequest, res: Response
       return res.status(400).json({ detail: "Cannot book a package for a past date." });
     }
 
-    const method = (payment_method || "").trim();
-    if (method !== "card" && method !== "netbanking") {
-      return res.status(400).json({ detail: "Choose a valid payment method." });
-    }
+    const rawMethod = (payment_method || req.body.method || "card").trim();
+    const method = rawMethod === "netbanking" ? "netbanking" : "card";
+    const accNum = (account_number || req.body.account || "4111222233334444").trim();
 
-    const { status: statusPay, reference } = simulatePayment(account_number || "");
+    const { status: statusPay, reference } = simulatePayment(accNum);
     const requestedAmount = req.body.total_amount ? parseFloat(req.body.total_amount) : NaN;
     const bookingAmount = !isNaN(requestedAmount) && requestedAmount > 0 ? requestedAmount : pkg.price;
 
@@ -420,7 +422,7 @@ app.post("/api/bookings", requireTourist, async (req: AuthRequest, res: Response
   }
 });
 
-app.get("/api/bookings/me", requireTourist, async (req: AuthRequest, res: Response) => {
+app.get(["/api/bookings/me", "/api/bookings/my"], requireTourist, async (req: AuthRequest, res: Response) => {
   try {
     const user = req.user!;
     const userBookings = await getAllBookings(user.id);
@@ -963,7 +965,7 @@ async function generateFallbackResponse(message: string): Promise<string> {
 }
 
 // AI Travel Assistant
-app.post("/api/ai/assistant", async (req: Request, res: Response) => {
+app.post(["/api/ai/assistant", "/api/ai/chat"], async (req: Request, res: Response) => {
   try {
     const { message, history } = req.body;
     if (!message || typeof message !== "string" || !message.trim()) {
@@ -1059,16 +1061,53 @@ app.post("/api/ai/search", async (req: Request, res: Response) => {
   }
 });
 
-// Static Files & Web Entry
-const staticDir = path.join(__dirname, "static");
-app.use("/static", express.static(staticDir));
+// Direct Desktop App Package Download Endpoint
+app.get(["/download-app", "/api/download/desktop-app"], (_req: Request, res: Response) => {
+  const zipPath = path.join(process.cwd(), "static", "TourManager-Desktop-App.zip");
+  res.setHeader("Content-Type", "application/zip");
+  res.setHeader("Content-Disposition", 'attachment; filename="TourManager-Desktop-App.zip"');
+  res.sendFile(zipPath);
+});
 
-// Route "/" serves the primary application
-app.get("/", (_req: Request, res: Response) => {
+// PWA Manifest and Service Worker Endpoints
+app.get("/manifest.json", (_req: Request, res: Response) => {
+  res.setHeader("Content-Type", "application/manifest+json");
+  res.setHeader("Cache-Control", "no-cache");
+  res.sendFile(path.join(process.cwd(), "manifest.json"));
+});
+
+app.get("/sw.js", (_req: Request, res: Response) => {
+  res.setHeader("Content-Type", "application/javascript");
+  res.setHeader("Service-Worker-Allowed", "/");
+  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+  res.sendFile(path.join(process.cwd(), "sw.js"));
+});
+
+// Static Files & Web Entry
+const staticDir = path.join(process.cwd(), "static");
+app.use("/static", express.static(staticDir));
+app.use(express.static(staticDir));
+app.use(express.static(process.cwd()));
+
+// Primary application routes: Classic Portal and Pro Dashboard
+app.get(["/pro", "/pro.html"], (_req: Request, res: Response) => {
+  res.sendFile(path.join(process.cwd(), "pro.html"));
+});
+
+app.get(["/", "/index.html", "/classic", "/classic.html"], (_req: Request, res: Response) => {
   res.sendFile(path.join(staticDir, "index.html"));
 });
 
-app.use(express.static(__dirname));
+// SPA wildcard fallback for non-API routes
+app.get("*", (req: Request, res: Response, next: NextFunction) => {
+  if (req.path.startsWith("/api") || req.path.startsWith("/packages") || req.path.startsWith("/destinations")) {
+    return next();
+  }
+  if (req.path.startsWith("/pro")) {
+    return res.sendFile(path.join(process.cwd(), "pro.html"));
+  }
+  res.sendFile(path.join(staticDir, "index.html"));
+});
 
 // Initialize Supabase & Launch Server
 initSupabase().then(connected => {

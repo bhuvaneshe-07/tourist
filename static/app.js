@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupComparison();
     setupModals();
     setupBookingCalculator();
+    setupPWA();
 
     if (token) {
         fetchMe();
@@ -1427,4 +1428,336 @@ window.triggerAISearchPrompt = function(query) {
 window.resetToAllPackages = function() {
     resetAISearch(true);
 };
+
+// ==========================================================================
+// Progressive Web App (PWA) Client Controller
+// ==========================================================================
+let deferredPWAInstallPrompt = null;
+
+// Global early capture of install prompt
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPWAInstallPrompt = e;
+    console.log('[PWA] beforeinstallprompt captured globally.');
+    const navInstallItem = document.getElementById('nav-pwa-install');
+    if (navInstallItem) {
+        navInstallItem.classList.remove('hidden');
+    }
+});
+
+function setupPWA() {
+    const installBtn = document.getElementById('pwa-install-btn');
+    const navInstallItem = document.getElementById('nav-pwa-install');
+    const offlineIndicator = document.getElementById('pwa-offline-indicator');
+    
+    // Modal elements
+    const installModal = document.getElementById('pwa-install-modal');
+    const modalTitle = document.getElementById('pwa-modal-title');
+    const modalDesc = document.getElementById('pwa-modal-desc');
+    const modalContent = document.getElementById('pwa-modal-content');
+    const modalActionBtn = document.getElementById('pwa-modal-action-btn');
+    const modalActionLink = document.getElementById('pwa-modal-action-link');
+    const modalCloseBtn = document.getElementById('pwa-modal-close-btn');
+    const navOpenTab = document.getElementById('nav-open-tab');
+
+    // 0. Iframe preview detection
+    const isInIframe = window.self !== window.top;
+    if (isInIframe && navOpenTab) {
+        navOpenTab.classList.remove('hidden');
+        const openTabLink = navOpenTab.querySelector('a');
+        if (openTabLink) {
+            openTabLink.href = window.location.href;
+        }
+    }
+
+    // 1. Standalone display mode check
+    const isStandalone = (
+        window.matchMedia('(display-mode: standalone)').matches ||
+        window.matchMedia('(display-mode: fullscreen)').matches ||
+        window.navigator.standalone === true
+    );
+
+    if (isStandalone) {
+        console.log('[PWA] Running in standalone app mode.');
+        if (navInstallItem) navInstallItem.classList.add('hidden');
+        if (navOpenTab) navOpenTab.classList.add('hidden');
+    }
+
+    // 2. Immediate Service Worker Registration
+    function registerServiceWorker() {
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js', { scope: '/' })
+                .then((registration) => {
+                    console.log('[PWA] Service Worker registered successfully with scope:', registration.scope);
+
+                    registration.addEventListener('updatefound', () => {
+                        const newWorker = registration.installing;
+                        if (newWorker) {
+                            newWorker.addEventListener('statechange', () => {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    console.log('[PWA] New version ready.');
+                                    showAlert('New update available. Refreshing...', 'info');
+                                    setTimeout(() => window.location.reload(), 1500);
+                                }
+                            });
+                        }
+                    });
+                })
+                .catch((err) => {
+                    console.warn('[PWA] Service Worker registration failed:', err);
+                });
+        }
+    }
+
+    if (document.readyState === 'complete') {
+        registerServiceWorker();
+    } else {
+        window.addEventListener('load', registerServiceWorker);
+    }
+
+    // 3. Handle successful installation
+    window.addEventListener('appinstalled', () => {
+        deferredPWAInstallPrompt = null;
+        console.log('[PWA] TourManager was successfully installed!');
+        if (navInstallItem) navInstallItem.classList.add('hidden');
+        if (installModal) installModal.classList.add('hidden');
+        showAlert('🎉 TourManager has been successfully installed on your device!', 'success');
+    });
+
+    // 4. Modal helper
+    function openInstallModal(config) {
+        if (!installModal) return;
+        if (modalTitle) modalTitle.textContent = config.title || 'Install TourManager';
+        if (modalDesc) modalDesc.textContent = config.desc || '';
+        if (modalContent) modalContent.innerHTML = config.html || '';
+        
+        if (modalActionLink) {
+            if (config.showLink) {
+                modalActionLink.classList.remove('hidden');
+                modalActionLink.href = config.linkHref || window.location.href;
+                modalActionLink.textContent = config.linkLabel || '🚀 Launch in Full Tab to Install';
+            } else {
+                modalActionLink.classList.add('hidden');
+            }
+        }
+
+        if (modalActionBtn) {
+            if (config.showAction) {
+                modalActionBtn.style.display = 'inline-block';
+                modalActionBtn.textContent = config.actionLabel || 'Install Now';
+                modalActionBtn.onclick = config.onAction || null;
+            } else {
+                modalActionBtn.style.display = 'none';
+            }
+        }
+
+        installModal.classList.remove('hidden');
+    }
+
+    function closeInstallModal() {
+        if (installModal) installModal.classList.add('hidden');
+    }
+
+    if (modalCloseBtn) {
+        modalCloseBtn.addEventListener('click', closeInstallModal);
+    }
+    if (installModal) {
+        installModal.addEventListener('click', (e) => {
+            if (e.target === installModal) closeInstallModal();
+        });
+    }
+
+    // 5. Install Button Click Handler with Laptop/Desktop Intelligence
+    if (installBtn) {
+        installBtn.addEventListener('click', async () => {
+            // Check if already in standalone app
+            if (isStandalone) {
+                showAlert('TourManager is already installed and running in standalone mode.', 'info');
+                return;
+            }
+
+            // Case A: Native install prompt available right now (e.g. Chrome / Edge)
+            if (deferredPWAInstallPrompt) {
+                try {
+                    deferredPWAInstallPrompt.prompt();
+                    const choiceResult = await deferredPWAInstallPrompt.userChoice;
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('[PWA] User accepted installation.');
+                        if (navInstallItem) navInstallItem.classList.add('hidden');
+                        closeInstallModal();
+                    }
+                    deferredPWAInstallPrompt = null;
+                    return;
+                } catch (e) {
+                    console.warn('[PWA] Prompt error:', e);
+                }
+            }
+
+            // Case B: Embedded in an iframe (e.g. AI Studio preview pane)
+            if (isInIframe) {
+                openInstallModal({
+                    title: 'Install on Your Laptop / PC',
+                    desc: 'You are currently previewing TourManager inside an embedded frame. For security, browsers (Chrome & Edge) only allow installing apps when opened in their own browser tab.',
+                    html: `
+                        <div class="pwa-ios-steps">
+                            <div class="pwa-ios-step-item">
+                                <span class="pwa-ios-step-num">1</span>
+                                <span>Click <strong>"Launch in Full Tab"</strong> below to open TourManager directly.</span>
+                            </div>
+                            <div class="pwa-ios-step-item">
+                                <span class="pwa-ios-step-num">2</span>
+                                <span>In the new tab, click the <strong>Install computer icon</strong> in your browser's address bar (or click <strong>Install App</strong>).</span>
+                            </div>
+                            <div class="pwa-ios-step-item">
+                                <span class="pwa-ios-step-num">3</span>
+                                <span>TourManager will be placed on your laptop's desktop and start menu as a standalone program!</span>
+                            </div>
+                        </div>
+                    `,
+                    showLink: true,
+                    linkHref: window.location.href,
+                    linkLabel: '🚀 Launch in Full Tab to Install',
+                    showAction: false
+                });
+                return;
+            }
+
+            // Case C: iOS Safari
+            const ua = window.navigator.userAgent.toLowerCase();
+            const isIOS = /iphone|ipad|ipod/.test(ua);
+            if (isIOS) {
+                openInstallModal({
+                    title: 'Install on iPhone & iPad',
+                    desc: 'Add TourManager to your home screen for quick offline access and full standalone app experience:',
+                    html: `
+                        <div class="pwa-ios-steps">
+                            <div class="pwa-ios-step-item">
+                                <span class="pwa-ios-step-num">1</span>
+                                <span>Tap the <strong>Share</strong> button <i class="fa-solid fa-arrow-up-from-bracket" style="color:#0f766e;"></i> in the Safari bottom bar.</span>
+                            </div>
+                            <div class="pwa-ios-step-item">
+                                <span class="pwa-ios-step-num">2</span>
+                                <span>Scroll down and tap <strong>Add to Home Screen</strong> <i class="fa-regular fa-square-plus" style="color:#0f766e;"></i>.</span>
+                            </div>
+                            <div class="pwa-ios-step-item">
+                                <span class="pwa-ios-step-num">3</span>
+                                <span>Tap <strong>Add</strong> in the top-right corner to finish.</span>
+                            </div>
+                        </div>
+                    `,
+                    showAction: false,
+                    showLink: false
+                });
+                return;
+            }
+
+            // Case D: macOS Safari (macOS Sonoma+)
+            const isMacSafari = /macintosh/.test(ua) && /safari/.test(ua) && !/chrome/.test(ua);
+            if (isMacSafari) {
+                openInstallModal({
+                    title: 'Install on Mac (Safari)',
+                    desc: 'You can add TourManager directly to your Mac Dock as a standalone desktop app:',
+                    html: `
+                        <div class="pwa-ios-steps">
+                            <div class="pwa-ios-step-item">
+                                <span class="pwa-ios-step-num">1</span>
+                                <span>Click <strong>File</strong> in the top Mac menu bar.</span>
+                            </div>
+                            <div class="pwa-ios-step-item">
+                                <span class="pwa-ios-step-num">2</span>
+                                <span>Select <strong>Add to Dock...</strong>.</span>
+                            </div>
+                            <div class="pwa-ios-step-item">
+                                <span class="pwa-ios-step-num">3</span>
+                                <span>Click <strong>Add</strong> to place TourManager in your Mac Dock!</span>
+                            </div>
+                        </div>
+                    `,
+                    showAction: false,
+                    showLink: false
+                });
+                return;
+            }
+
+            // Case E: Desktop Firefox
+            const isFirefox = /firefox/.test(ua);
+            if (isFirefox) {
+                openInstallModal({
+                    title: 'Browser Notice (Firefox)',
+                    desc: 'Mozilla Firefox desktop does not support Progressive Web App installation.',
+                    html: `
+                        <div class="pwa-ios-steps">
+                            <div class="pwa-ios-step-item">
+                                <span class="pwa-ios-step-num">!</span>
+                                <span>To install TourManager on your laptop, please open this link in <strong>Google Chrome</strong>, <strong>Microsoft Edge</strong>, or <strong>Brave</strong>.</span>
+                            </div>
+                        </div>
+                    `,
+                    showAction: false,
+                    showLink: false
+                });
+                return;
+            }
+
+            // Case F: Desktop Chrome / Edge / Brave
+            openInstallModal({
+                title: 'Install on Your Laptop / PC',
+                desc: 'TourManager is ready to install as a desktop app on your laptop:',
+                html: `
+                    <div class="pwa-ios-steps">
+                        <div class="pwa-ios-step-item">
+                            <span class="pwa-ios-step-num">1</span>
+                            <span>Look at the <strong>right side of your browser address bar</strong> (next to the bookmark star).</span>
+                        </div>
+                        <div class="pwa-ios-step-item">
+                            <span class="pwa-ios-step-num">2</span>
+                            <span>Click the <strong>Install TourManager</strong> computer icon (<i class="fa-solid fa-desktop" style="color:#0f766e;"></i> or <i class="fa-solid fa-download" style="color:#0f766e;"></i>).</span>
+                        </div>
+                        <div class="pwa-ios-step-item">
+                            <span class="pwa-ios-step-num">3</span>
+                            <span>Or click the 3-dot menu <strong>⋮</strong> $\\rightarrow$ <strong>Save and share</strong> $\\rightarrow$ <strong>Install TourManager</strong>.</span>
+                        </div>
+                    </div>
+                `,
+                showAction: true,
+                showLink: false,
+                actionLabel: 'Check Address Bar to Install',
+                onAction: () => {
+                    if (deferredPWAInstallPrompt) {
+                        deferredPWAInstallPrompt.prompt();
+                    } else {
+                        showAlert('Look at the top-right of your browser address bar and click the Install icon.', 'info');
+                    }
+                }
+            });
+        });
+    }
+
+    // 6. Online / Offline Status Detection
+    function updateOnlineStatus() {
+        const isOnline = navigator.onLine;
+        if (offlineIndicator) {
+            if (isOnline) {
+                offlineIndicator.classList.add('hidden');
+            } else {
+                offlineIndicator.classList.remove('hidden');
+            }
+        }
+    }
+
+    window.addEventListener('online', () => {
+        updateOnlineStatus();
+        showAlert('🌐 Back online! Tour catalogs synchronized.', 'success');
+        loadPackages();
+    });
+
+    window.addEventListener('offline', () => {
+        updateOnlineStatus();
+        showAlert('⚡ Offline mode active. Cached travel packages and views are available.', 'warning');
+    });
+
+    // Initialize connectivity state
+    updateOnlineStatus();
+}
+
 

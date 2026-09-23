@@ -102,6 +102,14 @@ function seedInitialData() {
   // Admin users
   inMemoryStore.users.push({
     id: inMemoryStore.nextUserId++,
+    name: "Tourism Administrator",
+    email: "admin@tourism.gov",
+    password_hash: hash("AdminSecure2026!"),
+    role: "admin",
+    created_at: new Date().toISOString(),
+  });
+  inMemoryStore.users.push({
+    id: inMemoryStore.nextUserId++,
     name: "System Admin",
     email: "admin@example.com",
     password_hash: hash("Admin123!"),
@@ -125,7 +133,15 @@ function seedInitialData() {
     created_at: new Date().toISOString(),
   });
 
-  // Tourist user
+  // Tourist users
+  inMemoryStore.users.push({
+    id: inMemoryStore.nextUserId++,
+    name: "Executive Traveler",
+    email: "traveler@executive.io",
+    password_hash: hash("Travel2026!"),
+    role: "tourist",
+    created_at: new Date().toISOString(),
+  });
   inMemoryStore.users.push({
     id: inMemoryStore.nextUserId++,
     name: "Alex Traveler",

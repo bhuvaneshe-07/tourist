@@ -5,9 +5,8 @@ import {
   getPackageById,
   formatPackageOut,
   getPackageRatingSummary,
-  Package,
-  Hotel,
-} from "../db/index.js";
+} from "../db/index.ts";
+import type { Package, Hotel } from "../db/index.ts";
 
 let genAIClient: GoogleGenAI | null = null;
 function getGenAI(): GoogleGenAI | null {
@@ -241,8 +240,8 @@ export function semanticSearchFallback(
 /**
  * Primary Natural Language Search using Gemini API with fallback resilience.
  */
-export async function searchPackagesWithAI(query: string): Promise<AISearchResult> {
-  const packagesList = await getAllPackages();
+export async function searchPackagesWithAI(query: string, customPackagesList?: Package[]): Promise<AISearchResult> {
+  const packagesList = customPackagesList || await getAllPackages();
   const hotels = await getAllHotels();
   const hotelMap = new Map(hotels.map(h => [h.id, h]));
 

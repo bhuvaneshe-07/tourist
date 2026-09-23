@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f766e" />
+      <stop offset="100%" stop-color="#115e59" />
+    </linearGradient>
+    <linearGradient id="needle-n-r" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" />
+      <stop offset="100%" stop-color="#f0fdfa" />
+    </linearGradient>
+    <linearGradient id="needle-n-l" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ccfbf1" />
+      <stop offset="100%" stop-color="#99f6e4" />
+    </linearGradient>
+    <linearGradient id="needle-s-r" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#2dd4bf" />
+      <stop offset="100%" stop-color="#14b8a6" />
+    </linearGradient>
+    <linearGradient id="needle-s-l" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0d9488" />
+      <stop offset="100%" stop-color="#0f766e" />
+    </linearGradient>
+    <filter id="drop-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.35" />
+    </filter>
+  </defs>
+  <!-- Background squircle -->
+  <rect x="16" y="16" width="480" height="480" rx="110" fill="url(#bg-grad)" filter="url(#drop-shadow)" />
+  
+  <!-- Outer Compass Ring -->
+  <circle cx="256" cy="256" r="180" fill="none" stroke="#5eead4" stroke-width="8" opacity="0.85" />
+  <circle cx="256" cy="256" r="140" fill="none" stroke="#ccfbf1" stroke-width="2" stroke-dasharray="8 6" opacity="0.5" />
+
+  <!-- Cardinal Ticks -->
+  <line x1="256" y1="60" x2="256" y2="82" stroke="#ffffff" stroke-width="6" stroke-linecap="round" />
+  <line x1="256" y1="430" x2="256" y2="452" stroke="#ffffff" stroke-width="6" stroke-linecap="round" />
+  <line x1="60" y1="256" x2="82" y2="256" stroke="#ffffff" stroke-width="6" stroke-linecap="round" />
+  <line x1="430" y1="256" x2="452" y2="256" stroke="#ffffff" stroke-width="6" stroke-linecap="round" />
+
+  <!-- North Needle -->
+  <polygon points="256,76 256,256 298,256" fill="url(#needle-n-r)" />
+  <polygon points="256,76 214,256 256,256" fill="url(#needle-n-l)" />
+
+  <!-- South Needle -->
+  <polygon points="256,436 298,256 256,256" fill="url(#needle-s-r)" />
+  <polygon points="256,436 256,256 214,256" fill="url(#needle-s-l)" />
+
+  <!-- East Needle -->
+  <polygon points="436,256 256,214 256,256" fill="url(#needle-n-r)" />
+  <polygon points="436,256 256,256 256,298" fill="url(#needle-s-r)" />
+
+  <!-- West Needle -->
+  <polygon points="76,256 256,256 256,214" fill="url(#needle-n-l)" />
+  <polygon points="76,256 256,298 256,256" fill="url(#needle-s-l)" />
+
+  <!-- Center Pivot Hub -->
+  <circle cx="256" cy="256" r="28" fill="#fbbf24" stroke="#ffffff" stroke-width="4" />
+  <circle cx="256" cy="256" r="10" fill="#ffffff" />
+</svg>
